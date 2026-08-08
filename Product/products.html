@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products List - Dochaki Premium Gear</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./Products.css">
+    <link rel="stylesheet" href="../footer/footer.css">
+    <link rel="stylesheet" href="../Header/Header.css">
+
+    <!-- Supabase & Checkout Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="../Js_files/Header.js"></script>
+
+    <!-- CRITICAL: Added type="module" to enable import pipelines flawlessly -->
+    <script type="module" src="./products.js"></script>
+</head>
+
+<body>
+    <!-- Global Header Placeholder -->
+    <div id="global-header"></div>
+
+    <!-- Header provides the cart drawer markup; avoid duplicate drawer here -->
+
+    <!-- PREMIUM SHOPPING GRID CONTENT -->
+    <section class="dks-prd-shop-wrapper">
+        <div class="dks-prd-category-bar">
+            <button class="dks-prd-btn-back" onclick="window.location.href='../Shop/Shop.html'">⬅️ Back to
+                Models</button>
+        </div>
+
+        <div class="dks-prd-shop-header">
+            <h1 class="dks-prd-shop-title" id="main-model-title">Premium Products</h1>
+            <p class="dks-prd-shop-subtitle" id="product-count">Fetching model catalog...</p>
+        </div>
+
+        <!-- Redesigned State Indicators -->
+        <div id="dks-prd-loading-state">Loading model specification setups...</div>
+        <div id="dks-prd-error-state" style="display: none;">No products configurations tracked for this model.</div>
+
+        <!-- Master Isolated Products Grid layout -->
+        <div class="dks-prd-grid-2col" id="product-grid"></div>
+    </section>
+
+    <!-- Global Footer Placeholder -->
+    <div id="global-footer"></div>
+
+    <script>
+        async function loadHeader() {
+            try {
+                const response = await fetch("../Header/Header.html");
+                const data = await response.text();
+                document.getElementById("global-header").innerHTML = data;
+
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                if (typeof initSupabase === "function") {
+                    await initSupabase();
+                }
+
+                if (typeof forceSyncHomeCart === "function") {
+                    forceSyncHomeCart();
+                }
+
+                let currentPage = window.location.pathname.split("/").pop().toLowerCase();
+
+                if (currentPage === "") {
+                    currentPage = "index.html";
+                }
+
+                if (currentPage === "products.html" || currentPage === "product_deatail.html") {
+                    currentPage = "shop.html";
+                }
+
+                const menuItems = document.querySelectorAll(".hm-head-moto-nav-list li");
+                menuItems.forEach(li => li.classList.remove("active-li"));
+
+                menuItems.forEach(li => {
+                    const link = li.querySelector("a");
+                    if (!link) return;
+
+                    const fileName = link.getAttribute("href").split("/").pop().toLowerCase();
+                    if (fileName === currentPage) {
+                        li.classList.add("active-li");
+                    }
+                });
+            } catch (err) {
+                console.error("Header Load Error:", err);
+            }
+        }
+
+        async function loadFooter() {
+            try {
+                const response = await fetch("../Footer/footer.html");
+                const data = await response.text();
+                document.getElementById("global-footer").innerHTML = data;
+            } catch (err) {
+                console.error("Footer Load Error:", err);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadHeader();
+            await loadFooter();
+        });
+
+        // Global UI Handlers for Drawer
+        function toggleCartDrawer() {
+            document.getElementById('cartOverlay').classList.toggle('active');
+            document.getElementById('cartDrawer').classList.toggle('active');
+        }
+        window.toggleCartDrawer = toggleCartDrawer;
+    </script>
+</body>
+
+</html>

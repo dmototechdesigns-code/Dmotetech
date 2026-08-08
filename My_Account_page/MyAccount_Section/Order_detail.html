@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details - DMotoTech</title>
+
+    <!-- CSS Links -->
+    <link class="sub-link" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./Css/order.css">
+    <link rel="stylesheet" href="../../header.css">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- JS Scripts Links -->
+    <script defer src="../../Header/header.js"></script>
+    <script defer src="../../Js_files/Order_detail.js"></script>
+</head>
+
+<body>
+
+    <!-- Target container for header -->
+    <div id="global-header"></div>
+
+    <div class="main-content-container">
+
+        <!-- Clickable & Functional Breadcrumb Row -->
+        <div class="breadcrumb-row">
+            <a href="../../index.html" class="bc-link">Home</a> &gt;
+            <a href="../MyAccount.html?section=profile" class="bc-link">My Account</a> &gt;
+            <a href="../MyAccount.html?section=orders" class="bc-link">My Orders</a> &gt;
+            <span class="active-node" id="breadcrumb-order-id">Loading...</span>
+        </div>
+
+        <div class="flipkart-order-detail-container">
+
+            <!-- Left Column: Product & Tracking Details -->
+            <div class="fk-left-col">
+
+                <!-- Product Box -->
+                <div class="fk-card product-header-box">
+                    <div class="prod-details">
+                        <h3 id="prod-title">Loading product details...</h3>
+                        <p class="seller-info" id="seller-info">Seller: DMotoTech</p>
+                        <p class="seller-info" id="order-variant">Option: Standard</p>
+                        <div class="prod-price" id="prod-price">₹--</div>
+                    </div>
+                    <div class="prod-img-box">
+                        <img id="prod-img" src="" alt="Product Image" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Tracking Box -->
+                <div class="fk-card tracking-box">
+                    <div class="v-timeline" id="tracking-timeline"></div>
+                    <a href="#" class="updates-link">See All Updates <i class="fa-solid fa-chevron-right"></i></a>
+                    <p class="cancel-reason" id="cancel-reason-text" style="display: none;"></p>
+
+                    <div class="chat-action-box">
+                        <button class="chat-btn"><i class="fa-regular fa-comment-dots"></i> Chat with us</button>
+                    </div>
+                </div>
+
+                <div class="fk-card rate-experience-box">
+                    <h4>Rate your experience</h4>
+                    <div class="rate-row-clickable">
+                        <div class="rate-left">
+                            <i class="fa-solid fa-folder-minus"></i>
+                            <span>How was your experience with this order?</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Delivery Details & Price Box -->
+            <div class="fk-right-col">
+
+                <!-- Delivery Address -->
+                <div class="fk-card delivery-details-box">
+                    <h3>Delivery details</h3>
+                    <div class="address-row">
+                        <i class="fa-solid fa-building-user icon-gray"></i>
+                        <div class="address-text">
+                            <p id="delivery-address">Fetching address details...</p>
+                        </div>
+                    </div>
+                    <div class="user-row">
+                        <i class="fa-regular fa-user icon-gray"></i>
+                        <p><strong id="user-name">Loading...</strong> <span id="user-phone"></span></p>
+                    </div>
+                </div>
+
+                <!-- Price summary breakdown -->
+                <div class="fk-card price-details-box">
+                    <h3>Price details</h3>
+
+                    <div class="price-item">
+                        <span>Base Price</span>
+                        <span id="base-price">₹--</span>
+                    </div>
+
+                    <div class="price-item" id="cod-charge-row" style="display: none;">
+                        <span>Delivery Charges (COD) <i class="fa-solid fa-truck info-icon"></i></span>
+                        <span>₹83</span>
+                    </div>
+
+                    <div class="price-total-row">
+                        <span>Total amount</span>
+                        <span id="total-amount">₹--</span>
+                    </div>
+
+                    <div class="payment-badge-box">
+                        <div class="pay-badge">
+                            <span>Payment Status</span>
+                            <span class="pay-method" id="payment-method-text">--</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

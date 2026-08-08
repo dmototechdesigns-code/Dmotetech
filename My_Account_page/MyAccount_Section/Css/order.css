@@ -1,0 +1,284 @@
+        /* Centered Wrapper Container without any sidebar */
+        .main-content-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ==========================================================================
+           2. BREADCRUMB & WRAPPER LAYOUT (Matches image_f678ef.png)
+           ========================================================================== */
+        .breadcrumb-row {
+            font-size: 11px;
+            color: #878787;
+            margin-bottom: 15px;
+            margin-top: 50px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .breadcrumb-row a {
+            list-style: none;
+        }
+
+
+
+        .breadcrumb-row span.active-node {
+            color: #212121;
+        }
+
+        .flipkart-order-detail-container {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+
+        /* Common Card Panel Block */
+        .fk-card {
+            background: #ffffff;
+            border-radius: 2px;
+            padding: 24px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+            border: 1px solid #f0f0f0;
+        }
+
+        .fk-left-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Product Description Box Header */
+        .product-header-box {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .product-header-box h3 {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: #212121;
+            margin-bottom: 8px;
+        }
+
+        .seller-info {
+            font-size: 12px;
+            color: #878787;
+            margin-bottom: 12px;
+        }
+
+        .prod-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: #212121;
+        }
+
+        .prod-img-box img {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        /* 🟢 VERTICAL TRACKING TIMELINE BLOCK */
+        .tracking-box {
+            padding-bottom: 15px;
+        }
+
+        .v-timeline {
+            padding-left: 5px;
+        }
+
+        .v-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .v-bullet {
+            font-size: 15px;
+            z-index: 2;
+            background: #ffffff;
+        }
+
+        .v-step.done .v-bullet {
+            color: #26a541;
+            /* Green status check bullet */
+        }
+
+        .v-step.cancelled .v-bullet {
+            color: #ef4444;
+            /* Red status cancel bullet */
+        }
+
+        .v-line {
+            width: 2px;
+            height: 30px;
+            margin-left: 6px;
+            margin-top: -2px;
+            margin-bottom: -2px;
+            z-index: 1;
+        }
+
+        .v-line.red-line {
+            background: #ef4444;
+            /* Vertical tracked line */
+        }
+
+        .status-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #212121;
+        }
+
+        .updates-link {
+            display: inline-block;
+            color: #2874f0;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+
+        .cancel-reason {
+            font-size: 13px;
+            color: #212121;
+            margin-top: 25px;
+            margin-left: 30px;
+        }
+
+        .chat-action-box {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 20px;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .chat-btn {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: 500;
+            color: #212121;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Experience Feedback Box Elements */
+        .rate-experience-box h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #212121;
+            margin-bottom: 15px;
+        }
+
+        .rate-row-clickable {
+            background: #fbfbfb;
+            border: 1px solid #f0f0f0;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .rate-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            color: #212121;
+        }
+
+        .rate-left i {
+            color: #878787;
+        }
+
+        .arrow-right {
+            color: #212121;
+            font-size: 11px;
+        }
+
+        /* Right Column Blocks Styling */
+        .fk-right-col h3 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #212121;
+            margin-bottom: 18px;
+        }
+
+        .address-row,
+        .user-row {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+            color: #212121;
+            margin-bottom: 15px;
+        }
+
+        .icon-gray {
+            color: #878787;
+            margin-top: 2px;
+        }
+
+        /* Cost Ledger Summary Prices Items */
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #212121;
+            margin-bottom: 12px;
+        }
+
+        .info-icon {
+            font-size: 11px;
+            color: #878787;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        .price-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #212121;
+            border-top: 1px dashed #e0e0e0;
+            padding-top: 15px;
+            margin-top: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+
+        .payment-badge-box {
+            background: #fbfbfb;
+            border: 1px solid #f0f0f0;
+            padding: 12px;
+            border-radius: 2px;
+        }
+
+        .pay-badge {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #212121;
+            align-items: center;
+        }
+
+        .pay-method {
+            font-weight: 500;
+        }
+
+        /* Responsive Breakpoint Layouts */
+        @media (max-width: 768px) {
+            .flipkart-order-detail-container {
+                grid-template-columns: 1fr;
+            }
+        }

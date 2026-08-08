@@ -1,0 +1,493 @@
+/* =========================================
+   DMotoTech Premium Checkout - Light Mode
+   Crimson & Charcoal Aesthetic
+   ========================================= */
+
+:root {
+    --dm-chk-bg: #f9fafb;
+    /* Very light grey for background */
+    --dm-chk-card-bg: #ffffff;
+    --dm-chk-text-dark: #1e293b;
+    /* Dark Charcoal for text */
+    --dm-chk-text-muted: #64748b;
+    --dm-chk-border: #e2e8f0;
+
+    /* Primary Crimson Palette */
+    --dm-chk-primary: #DC143C;
+    /* Classic Premium Crimson */
+    --dm-chk-primary-dark: #B21031;
+    /* Darker Maroon for hover/effects */
+    --dm-chk-primary-light: #FFF1F4;
+    /* Very light pinkish-red for backgrounds */
+
+    --dm-chk-success: #10b981;
+    --dm-chk-danger: #ef4444;
+    --dm-chk-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+    --dm-chk-shadow-hover: 0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--dm-chk-bg);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--dm-chk-text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main Layout */
+.dm-chk-main-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+.dm-chk-left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Generic Section Box */
+.dm-chk-section-box {
+    background: var(--dm-chk-card-bg);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--dm-chk-border);
+    box-shadow: var(--dm-chk-shadow);
+}
+
+.dm-chk-section-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dm-chk-text-dark);
+    margin: 0 0 8px 0;
+}
+
+.dm-chk-section-desc {
+    font-size: 0.9rem;
+    color: var(--dm-chk-text-muted);
+    margin: 0 0 24px 0;
+}
+
+/* =========================================
+   1. Address Form & Saved Address
+   ========================================= */
+.dm-chk-saved-address-view {
+    margin-top: 10px;
+}
+
+.dm-chk-saved-address-card {
+    background: #f8fafc;
+    border: 1px dashed var(--dm-chk-border);
+    padding: 20px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.dm-chk-address-badge {
+    background: var(--dm-chk-primary-light);
+    color: var(--dm-chk-primary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dm-chk-lbl-receiver-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 12px 0 4px 0;
+    color: var(--dm-chk-text-dark);
+}
+
+.dm-chk-lbl-full-address,
+.dm-chk-lbl-receiver-phone {
+    margin: 0;
+    color: var(--dm-chk-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.dm-chk-lbl-receiver-phone {
+    margin-top: 8px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.dm-chk-change-addr-btn {
+    margin-top: 16px;
+    background: transparent;
+    border: 1px solid var(--dm-chk-primary);
+    color: var(--dm-chk-primary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dm-chk-change-addr-btn:hover {
+    background: var(--dm-chk-primary);
+    color: #fff;
+}
+
+/* Form Fields */
+.dm-chk-form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dm-chk-form-group label {
+    font-size: 0.85rem;
+    color: #334155;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.dm-chk-form-group input,
+.dm-chk-form-group select {
+    padding: 12px 14px;
+    border: 1px solid var(--dm-chk-border);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 0.95rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all 0.2s ease;
+    color: var(--dm-chk-text-dark);
+}
+
+.dm-chk-form-group input:focus {
+    outline: none;
+    border-color: var(--dm-chk-primary);
+    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.12);
+    /* Soft Crimson Glow */
+}
+
+.dm-chk-form-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* =========================================
+   2. Payment Methods
+   ========================================= */
+.dm-chk-payment-methods-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.dm-chk-method-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    border: 2px solid var(--dm-chk-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: #fff;
+}
+
+.dm-chk-method-card:hover {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+
+.dm-chk-method-card.dm-chk-selected {
+    border-color: var(--dm-chk-primary);
+    background: var(--dm-chk-primary-light);
+}
+
+.dm-chk-custom-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.dm-chk-method-card.dm-chk-selected .dm-chk-custom-radio {
+    border-color: var(--dm-chk-primary);
+}
+
+.dm-chk-method-card.dm-chk-selected .dm-chk-custom-radio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: var(--dm-chk-primary);
+    border-radius: 50%;
+}
+
+.dm-chk-method-icon {
+    color: var(--dm-chk-text-muted);
+    transition: color 0.2s ease;
+}
+
+.dm-chk-method-card.dm-chk-selected .dm-chk-method-icon {
+    color: var(--dm-chk-primary);
+}
+
+.dm-chk-method-details h4 {
+    margin: 0 0 4px 0;
+    font-size: 1rem;
+    color: var(--dm-chk-text-dark);
+}
+
+.dm-chk-method-details p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--dm-chk-text-muted);
+}
+
+/* =========================================
+   3. Order Summary Sidebar
+   ========================================= */
+.dm-chk-summary-sidebar-card {
+    background: var(--dm-chk-card-bg);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--dm-chk-border);
+    box-shadow: var(--dm-chk-shadow);
+    position: sticky;
+    top: 30px;
+}
+
+.dm-chk-sidebar-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: var(--dm-chk-text-dark);
+}
+
+/* Dynamic Cart Items Styling */
+.dm-chk-checkout-items-list {
+    max-height: 280px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 10px;
+}
+
+.dm-chk-summary-product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--dm-chk-border);
+}
+
+.dm-chk-summary-product-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--dm-chk-border);
+}
+
+.dm-chk-p-info {
+    flex: 1;
+}
+
+.dm-chk-p-info h5 {
+    margin: 0 0 4px 0;
+    font-size: 0.9rem;
+    color: var(--dm-chk-text-dark);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.dm-chk-p-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--dm-chk-text-muted);
+}
+
+.dm-chk-p-item-price {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--dm-chk-text-dark);
+}
+
+/* Scrollbar */
+.dm-chk-checkout-items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dm-chk-checkout-items-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.dm-chk-invoice-breakdown {
+    border-top: 1px dashed var(--dm-chk-border);
+    padding-top: 20px;
+}
+
+.dm-chk-invoice-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+    color: var(--dm-chk-text-muted);
+}
+
+.dm-chk-invoice-row span {
+    color: #334155;
+}
+
+.dm-chk-price-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dm-chk-cut-price-mrp {
+    text-decoration: line-through;
+    color: #94a3b8 !important;
+    font-size: 0.85rem;
+}
+
+.dm-chk-subtotal-value {
+    font-weight: 600;
+    color: var(--dm-chk-text-dark);
+}
+
+.dm-chk-discount-green {
+    color: var(--dm-chk-success) !important;
+    font-weight: 600;
+}
+
+.dm-chk-shipping-value {
+    color: var(--dm-chk-success);
+    font-weight: 600;
+}
+
+.dm-chk-total-row {
+    border-top: 1px solid var(--dm-chk-border);
+    padding-top: 16px;
+    margin-top: 16px;
+}
+
+.dm-chk-total-row span {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--dm-chk-text-dark);
+}
+
+.dm-chk-total-price {
+    font-size: 1.5rem !important;
+    color: var(--dm-chk-primary) !important;
+    /* Crimson Total */
+    font-weight: 800 !important;
+}
+
+/* Place Order Button */
+.dm-chk-place-order-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 24px;
+    background: linear-gradient(135deg, #DC143C, #8B0000);
+    /* Premium Crimson to Dark Red Gradient */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dm-chk-place-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+    background: linear-gradient(135deg, #E11D48, #9F1239);
+}
+
+.dm-chk-place-order-btn:active {
+    transform: translateY(0);
+}
+
+/* Return Link */
+.dm-chk-return-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: var(--dm-chk-text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.dm-chk-return-link i {
+    font-size: 10px;
+    margin-right: 6px;
+}
+
+.dm-chk-return-link:hover {
+    color: var(--dm-chk-primary);
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+@media (max-width: 900px) {
+    .dm-chk-main-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 20px auto;
+    }
+
+    .dm-chk-summary-sidebar-card {
+        position: static;
+        /* Disable sticky on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+
+    .dm-chk-section-box,
+    .dm-chk-summary-sidebar-card {
+        padding: 20px;
+    }
+
+    .dm-chk-form-row-grid {
+        grid-template-columns: 1fr;
+        /* Stack form fields on small screens */
+        gap: 0;
+    }
+
+    .dm-chk-section-title,
+    .dm-chk-sidebar-title {
+        font-size: 1.2rem;
+    }
+}

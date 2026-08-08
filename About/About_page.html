@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — DMototech | Rider-Focused Touring Accessories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F7F7F7;
+            color: #1A1A1A;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Subtle noise */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.015;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Background pattern */
+        .bg-pattern {
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.04) 1px, transparent 0);
+            background-size: 32px 32px;
+        }
+
+        /* Card Style */
+        .card {
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
+            transform: translateY(-2px);
+        }
+
+        /* Red accent text */
+        .text-accent {
+            color: #DC2626;
+        }
+
+        .bg-accent {
+            background-color: #DC2626;
+        }
+
+        .border-accent {
+            border-color: #DC2626;
+        }
+
+        /* Gradient with red */
+        .gradient-text {
+            background: linear-gradient(135deg, #DC2626, #991B1B, #1A1A1A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-dark {
+            background: linear-gradient(to right, #1A1A1A, #525252);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Soft glow */
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: 0.15;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.25;
+                transform: scale(1.05);
+            }
+        }
+
+        .glow-blob {
+            animation: pulse-glow 10s ease-in-out infinite;
+        }
+
+        /* Float */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(1deg);
+            }
+        }
+
+        .float-anim {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .float-anim-delay {
+            animation: float 10s ease-in-out 2s infinite;
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-card {
+            opacity: 0;
+            transform: perspective(1000px) rotateX(15deg) translateY(50px) scale(0.97);
+            transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-card.active {
+            opacity: 1;
+            transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+
+        .delay-500 {
+            transition-delay: 500ms;
+        }
+
+        /* Nav */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #DC2626;
+            border-radius: 1px;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Marquee */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-track {
+            animation: scroll-left 35s linear infinite;
+        }
+
+        .marquee-mask {
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+
+        /* Card shine */
+        .card-shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-shine::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.6) 45%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.6) 55%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.7s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card-shine:hover::before {
+            transform: translateX(100%);
+        }
+
+        /* Timeline */
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent, #DC2626, #DC2626, transparent);
+        }
+
+        /* Team overlay */
+        .team-img-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+        }
+
+        /* CTA */
+        .cta-primary {
+            background: #DC2626;
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            background: #B91C1C;
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-secondary {
+            border: 1.5px solid rgba(0, 0, 0, 0.15);
+            color: #1A1A1A;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            border-color: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F7F7F7;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        /* Wing decorative lines */
+        .wing-line {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #DC2626, transparent);
+        }
+
+        /* Stat counter */
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Logo wing decoration */
+        .logo-wings::before,
+        .logo-wings::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #DC2626);
+            transform: translateY(-50%);
+        }
+
+        .logo-wings::before {
+            right: 105%;
+            background: linear-gradient(to left, transparent, #DC2626);
+        }
+
+        .logo-wings::after {
+            left: 105%;
+        }
+
+        /* Product tag */
+        .product-tag {
+            background: #FEF2F2;
+            color: #DC2626;
+            border: 1px solid #FECACA;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.08), transparent);
+        }
+    </style>
+</head>
+
+<body class="bg-pattern">
+
+    <!-- Background Glow Blobs -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="glow-blob absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-red-200/40"
+            style="filter: blur(120px);"></div>
+        <div class="glow-blob absolute bottom-0 -left-40 w-[400px] h-[400px] rounded-full bg-neutral-200/50"
+            style="filter: blur(100px); animation-delay: 4s;"></div>
+    </div>
+
+    <!-- Navigation
+    <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-40px)] max-w-4xl">
+        <div class="nav-glass rounded-full px-5 py-2.5 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5">
+                <img src="https://res.cloudinary.com/dhrqbdrkh/image/upload/v1782471800/dmotottech_awtowl.png"
+                    alt="DMototech" class="h-9 w-auto">
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#story"
+                    class="nav-link text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Our
+                    Story</a>
+                <a href="#products"
+                    class="nav-link text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Products</a>
+                <a href="#philosophy"
+                    class="nav-link text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Philosophy</a>
+                <a href="#team"
+                    class="nav-link text-xs font-medium text-neutral-500 hover:text-neutral-900 transition-colors">Team</a>
+            </div>
+            <a href="#contact" class="cta-primary text-xs font-medium px-5 py-2 rounded-full flex items-center gap-1.5">
+                Get in Touch
+                <iconify-icon icon="mdi:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+        </div>
+    </nav> -->
+
+    <!-- Hero Section -->
+    <section class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-20 text-center">
+        <!-- Badge -->
+        <!-- <div
+            class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-neutral-100 shadow-sm mb-8">
+            <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+            <span class="text-[11px] font-medium text-neutral-500 uppercase tracking-wider">Built by Riders, for
+                Riders</span>
+        </div> -->
+
+        <!-- Logo -->
+        <div class="reveal delay-100 mb-8">
+            <img src="https://res.cloudinary.com/dhrqbdrkh/image/upload/v1782471800/dmotottech_awtowl.png"
+                alt="DMototech" class="h-24 md:h-32 w-auto mx-auto drop-shadow-lg">
+        </div>
+
+        <!-- Heading -->
+        <h1
+            class="reveal delay-200 text-4xl md:text-6xl lg:text-7xl font-extrabold leading-[1.05] tracking-tight max-w-4xl">
+            <span class="gradient-text-dark">We don't just make gear.</span><br>
+            <span class="gradient-text">We build freedom.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="reveal delay-300 mt-8 text-base md:text-lg font-light text-neutral-500 max-w-2xl leading-relaxed">
+            DMototech (Dochaki) is a small Indian manufacturer building rider-focused touring accessories. Every product
+            is developed, tested, and refined based on direct rider feedback from real roads.
+        </p>
+
+        <!-- CTA -->
+        <div class="reveal delay-400 mt-12 flex flex-col sm:flex-row items-center gap-4">
+            <a href="#products"
+                class="cta-primary text-sm font-medium px-8 py-3.5 rounded-full flex items-center gap-2">
+                Explore Products
+                <iconify-icon icon="mdi:motorbike" class="text-base"></iconify-icon>
+            </a>
+            <a href="#story" class="cta-secondary text-sm font-medium px-8 py-3.5 rounded-full flex items-center gap-2">
+                <iconify-icon icon="mdi:play-circle-outline" class="text-base"></iconify-icon>
+                Our Story
+            </a>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="reveal delay-500 absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+            <span class="text-[10px] uppercase tracking-widest text-neutral-400 font-medium">Scroll</span>
+            <div class="w-5 h-8 rounded-full border-2 border-neutral-200 flex items-start justify-center p-1">
+                <div class="w-1 h-2 rounded-full bg-neutral-400 animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wing Divider -->
+    <div class="relative z-10 flex items-center gap-4 px-16">
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-red-300 to-transparent"></div>
+        <iconify-icon icon="mdi:motorbike" class="text-red-400 text-lg"></iconify-icon>
+        <div class="flex-1 h-px bg-gradient-to-r from-transparent via-red-300 to-transparent"></div>
+    </div>
+
+    <!-- Marquee -->
+    <section class="relative z-10 py-6 bg-white/60 border-y border-neutral-100 overflow-hidden">
+        <div class="marquee-mask">
+            <div class="marquee-track flex items-center gap-10 whitespace-nowrap" style="width: max-content;">
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:shield-check" class="text-red-400/60"></iconify-icon> Touring Panniers</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:seat-recline-extra" class="text-red-400/60"></iconify-icon> Seat Covers</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:hand-pointing-up" class="text-red-400/60"></iconify-icon> Handlebar Grips</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:lightbulb" class="text-red-400/60"></iconify-icon> Auxiliary Lights</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:phone-mount" class="text-red-400/60"></iconify-icon> Phone Mounts</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:engine" class="text-red-400/60"></iconify-icon> Engine Guards</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:bag-personal" class="text-red-400/60"></iconify-icon> Tank Bags</span>
+                <span class="text-neutral-300">✦</span>
+                <!-- Duplicate -->
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:shield-check" class="text-red-400/60"></iconify-icon> Touring Panniers</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:seat-recline-extra" class="text-red-400/60"></iconify-icon> Seat Covers</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:hand-pointing-up" class="text-red-400/60"></iconify-icon> Handlebar Grips</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:lightbulb" class="text-red-400/60"></iconify-icon> Auxiliary Lights</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:phone-mount" class="text-red-400/60"></iconify-icon> Phone Mounts</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:engine" class="text-red-400/60"></iconify-icon> Engine Guards</span>
+                <span class="text-neutral-300">✦</span>
+                <span class="text-neutral-400 text-sm font-medium flex items-center gap-2"><iconify-icon
+                        icon="mdi:bag-personal" class="text-red-400/60"></iconify-icon> Tank Bags</span>
+                <span class="text-neutral-300">✦</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="relative z-10 py-20 px-6">
+        <div class="max-w-5xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="reveal card rounded-2xl p-6 text-center card-shine">
+                <div class="stat-number text-3xl md:text-4xl font-extrabold text-accent" data-target="15">0+</div>
+                <p class="mt-2 text-[11px] text-neutral-400 uppercase tracking-wider font-medium">Products Built</p>
+            </div>
+            <div class="reveal delay-100 card rounded-2xl p-6 text-center card-shine">
+                <div class="stat-number text-3xl md:text-4xl font-extrabold text-accent" data-target="5000">0+</div>
+                <p class="mt-2 text-[11px] text-neutral-400 uppercase tracking-wider font-medium">Happy Riders</p>
+            </div>
+            <div class="reveal delay-200 card rounded-2xl p-6 text-center card-shine">
+                <div class="stat-number text-3xl md:text-4xl font-extrabold text-accent" data-target="50">0K+</div>
+                <p class="mt-2 text-[11px] text-neutral-400 uppercase tracking-wider font-medium">Kms Tested</p>
+            </div>
+            <div class="reveal delay-300 card rounded-2xl p-6 text-center card-shine">
+                <div class="stat-number text-3xl md:text-4xl font-extrabold text-accent" data-target="28">0+</div>
+                <p class="mt-2 text-[11px] text-neutral-400 uppercase tracking-wider font-medium">States Reached</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="relative z-10 py-20 px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <!-- Text -->
+            <div>
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border border-neutral-100 shadow-sm mb-6">
+                    <iconify-icon icon="mdi:book-open-page-variant" class="text-accent text-sm"></iconify-icon>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">Our Story</span>
+                </div>
+                <h2 class="reveal delay-100 text-3xl md:text-4xl font-bold tracking-tight leading-tight">
+                    Born on the road,<br><span class="gradient-text">built in the garage</span>
+                </h2>
+                <p class="reveal delay-200 mt-6 text-sm font-light text-neutral-500 leading-relaxed">
+                    DMototech started the way every good riding story does — with a problem on the road. Our founder, a
+                    passionate tourer, couldn't find touring accessories that actually worked for Indian conditions. So
+                    he built his own.
+                </p>
+                <p class="reveal delay-300 mt-4 text-sm font-light text-neutral-500 leading-relaxed">
+                    What began as DIY modifications in a small garage soon turned into a full-fledged manufacturing
+                    operation. Today, under the name <strong class="text-neutral-700 font-medium">Dochaki</strong>, we
+                    design and manufacture rider-focused touring accessories that are tested on real Indian highways,
+                    through real weather, by real riders.
+                </p>
+                <p class="reveal delay-400 mt-4 text-sm font-light text-neutral-500 leading-relaxed">
+                    We're not a big corporation. We're a small team that rides, understands pain points firsthand, and
+                    builds solutions that actually last.
+                </p>
+
+                <!-- Key Points -->
+                <div class="reveal delay-500 mt-8 grid grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="mdi:check-bold" class="text-accent text-sm"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Rider Tested</p>
+                            <p class="text-xs text-neutral-400 mt-0.5">Every product road-tested</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="mdi:check-bold" class="text-accent text-sm"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Made in India</p>
+                            <p class="text-xs text-neutral-400 mt-0.5">Proudly Indian manufactured</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="mdi:check-bold" class="text-accent text-sm"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Direct Feedback</p>
+                            <p class="text-xs text-neutral-400 mt-0.5">Built from rider inputs</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <iconify-icon icon="mdi:check-bold" class="text-accent text-sm"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium">Affordable Quality</p>
+                            <p class="text-xs text-neutral-400 mt-0.5">Premium without the premium tag</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="reveal-card relative">
+                <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-lg">
+                    <img src="https://picsum.photos/seed/motorcycle-garage-workshop/700/550.jpg"
+                        class="w-full h-[420px] object-cover" alt="DMototech Workshop">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-5 left-5 right-5">
+                        <div class="bg-white/90 backdrop-blur-md rounded-xl p-4 flex items-center gap-4 shadow-lg">
+                            <div class="w-12 h-12 rounded-xl bg-accent flex items-center justify-center flex-shrink-0">
+                                <iconify-icon icon="mdi:map-marker" class="text-white text-xl"></iconify-icon>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-neutral-800">Made in India 🇮🇳</p>
+                                <p class="text-xs text-neutral-500 mt-0.5">Designed & manufactured locally</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Floating badge -->
+                <div
+                    class="float-anim absolute -top-3 -right-3 bg-white rounded-xl px-4 py-2.5 shadow-lg border border-neutral-100 flex items-center gap-2">
+                    <iconify-icon icon="mdi:motorbike" class="text-accent text-lg"></iconify-icon>
+                    <span class="text-xs font-semibold">Since Day 1</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Products Section -->
+    <section id="products" class="relative z-10 py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border border-neutral-100 shadow-sm mb-6">
+                    <iconify-icon icon="mdi:toolbox" class="text-accent text-sm"></iconify-icon>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">What We Build</span>
+                </div>
+                <h2 class="reveal delay-100 text-3xl md:text-4xl font-bold tracking-tight">
+                    Gear that <span class="gradient-text">actually works</span>
+                </h2>
+                <p class="reveal delay-200 mt-4 text-sm text-neutral-500 font-light max-w-lg mx-auto">No fluff, no
+                    gimmicks. Just solid touring accessories built for Indian roads and Indian riders.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Product 1 -->
+                <div class="reveal-card card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-luggage-bag/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Touring Luggage">
+                        <div
+                            class="absolute top-3 left-3 product-tag text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                            Bestseller</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Touring Luggage Systems</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Panniers and dry bags
+                            designed for Indian road conditions — waterproof, rugged, and easy to mount.</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="reveal-card delay-100 card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-seat-cover/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Seat Covers">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Ergonomic Seat Solutions</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Long-distance comfort
+                            upgrades. Tested on 1000km+ rides before they make it to you.</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="reveal-card delay-200 card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-lights-led/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Lighting">
+                        <div
+                            class="absolute top-3 left-3 product-tag text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                            New</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Lighting & Visibility</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Auxiliary lights and
+                            indicators that cut through fog, rain, and darkness on those night highways.</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="reveal-card delay-100 card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-phone-mount/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Mounts">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Mounts & Holders</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Phone mounts, GPS holders,
+                            and action camera mounts that don't vibrate loose at 120km/h.</p>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="reveal-card delay-200 card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-protection-guard/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Protection">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Protection Accessories</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Engine guards, crash guards,
+                            and frame sliders built to take the hit so your bike doesn't have to.</p>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="reveal-card delay-300 card rounded-2xl overflow-hidden card-shine group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://picsum.photos/seed/motorcycle-ergonomic-grip/500/300.jpg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            alt="Ergonomics">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-base font-semibold">Ergonomic Upgrades</h3>
+                        <p class="mt-2 text-sm font-light text-neutral-500 leading-relaxed">Handlebar risers, footpeg
+                            relocations, and grip solutions for those 12-hour riding days.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Philosophy / Process -->
+    <section id="philosophy" class="relative z-10 py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border border-neutral-100 shadow-sm mb-6">
+                    <iconify-icon icon="mdi:cog-sync" class="text-accent text-sm"></iconify-icon>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">How We Build</span>
+                </div>
+                <h2 class="reveal delay-100 text-3xl md:text-4xl font-bold tracking-tight">
+                    From rider pain to <span class="gradient-text">real solution</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-5">
+                <div class="reveal-card card rounded-2xl p-6 text-center card-shine relative">
+                    <div
+                        class="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center shadow-md">
+                        1</div>
+                    <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="mdi:road-variant" class="text-accent text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold">Ride & Identify</h3>
+                    <p class="mt-2 text-xs font-light text-neutral-500 leading-relaxed">We ride. We feel the problem.
+                        Real roads, real conditions.</p>
+                </div>
+
+                <div class="reveal-card delay-100 card rounded-2xl p-6 text-center card-shine relative">
+                    <div
+                        class="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center shadow-md">
+                        2</div>
+                    <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="mdi:pencil-ruler" class="text-accent text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold">Design & Prototype</h3>
+                    <p class="mt-2 text-xs font-light text-neutral-500 leading-relaxed">Sketch, prototype, iterate.
+                        Function over form, always.</p>
+                </div>
+
+                <div class="reveal-card delay-200 card rounded-2xl p-6 text-center card-shine relative">
+                    <div
+                        class="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center shadow-md">
+                        3</div>
+                    <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="mdi:test-tube" class="text-accent text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold">Test on Roads</h3>
+                    <p class="mt-2 text-xs font-light text-neutral-500 leading-relaxed">Not lab tested — road tested.
+                        Himalayas to coastal highways.</p>
+                </div>
+
+                <div class="reveal-card delay-300 card rounded-2xl p-6 text-center card-shine relative">
+                    <div
+                        class="absolute -top-3 -right-3 w-7 h-7 rounded-full bg-accent text-white text-xs font-bold flex items-center justify-center shadow-md">
+                        4</div>
+                    <div class="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mx-auto mb-5">
+                        <iconify-icon icon="mdi:truck-delivery" class="text-accent text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-sm font-semibold">Ship & Listen</h3>
+                    <p class="mt-2 text-xs font-light text-neutral-500 leading-relaxed">Deliver to riders. Collect
+                        feedback. Improve. Repeat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Timeline -->
+    <section class="relative z-10 py-20 px-6">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-14">
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border border-neutral-100 shadow-sm mb-6">
+                    <iconify-icon icon="mdi:timeline-clock" class="text-accent text-sm"></iconify-icon>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">Journey</span>
+                </div>
+                <h2 class="reveal delay-100 text-3xl md:text-4xl font-bold tracking-tight">
+                    The road so <span class="gradient-text">far</span>
+                </h2>
+            </div>
+
+            <div class="relative">
+                <div class="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 timeline-line"></div>
+
+                <!-- Step 1 -->
+                <div class="reveal relative flex flex-col md:flex-row items-start gap-8 mb-14">
+                    <div class="md:w-1/2 md:text-right md:pr-12 pl-16 md:pl-0">
+                        <span class="text-xs font-bold text-accent uppercase tracking-wider">The Beginning</span>
+                        <h3 class="text-lg font-semibold mt-1">A Problem on the Highway</h3>
+                        <p class="text-sm text-neutral-500 font-light mt-2 leading-relaxed">Founder's luggage ripped
+                            mid-ride. Couldn't find a reliable Indian alternative. Decided to build one.</p>
+                    </div>
+                    <div
+                        class="absolute left-3.5 md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-accent border-4 border-[#F7F7F7] z-10 mt-1 shadow-sm">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="reveal delay-100 relative flex flex-col md:flex-row items-start gap-8 mb-14">
+                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                    <div
+                        class="absolute left-3.5 md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-accent border-4 border-[#F7F7F7] z-10 mt-1 shadow-sm">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-16">
+                        <span class="text-xs font-bold text-accent uppercase tracking-wider">First Prototype</span>
+                        <h3 class="text-lg font-semibold mt-1">Garage to Reality</h3>
+                        <p class="text-sm text-neutral-500 font-light mt-2 leading-relaxed">First pannier built by hand.
+                            Tested on a Ladakh trip. It survived. So did the rider.</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="reveal delay-200 relative flex flex-col md:flex-row items-start gap-8 mb-14">
+                    <div class="md:w-1/2 md:text-right md:pr-12 pl-16 md:pl-0">
+                        <span class="text-xs font-bold text-accent uppercase tracking-wider">Growing Up</span>
+                        <h3 class="text-lg font-semibold mt-1">Word Spreads</h3>
+                        <p class="text-sm text-neutral-500 font-light mt-2 leading-relaxed">Riding communities started
+                            noticing. Orders came from riders across India. Dochaki was officially born.</p>
+                    </div>
+                    <div
+                        class="absolute left-3.5 md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-accent border-4 border-[#F7F7F7] z-10 mt-1 shadow-sm">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="reveal delay-300 relative flex flex-col md:flex-row items-start gap-8">
+                    <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                    <div
+                        class="absolute left-3.5 md:left-1/2 md:-translate-x-1/2 w-5 h-5 rounded-full bg-accent border-4 border-[#F7F7F7] z-10 mt-1 shadow-sm">
+                    </div>
+                    <div class="md:w-1/2 md:pl-12 pl-16">
+                        <span class="text-xs font-bold text-accent uppercase tracking-wider">Today & Beyond</span>
+                        <h3 class="text-lg font-semibold mt-1">Just Getting Started</h3>
+                        <p class="text-sm text-neutral-500 font-light mt-2 leading-relaxed">15+ products, 5000+ riders,
+                            and counting. More roads to conquer, more problems to solve.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Team Section -->
+    <section id="team" class="relative z-10 py-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-14">
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 border border-neutral-100 shadow-sm mb-6">
+                    <iconify-icon icon="mdi:account-group" class="text-accent text-sm"></iconify-icon>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">The Crew</span>
+                </div>
+                <h2 class="reveal delay-100 text-3xl md:text-4xl font-bold tracking-tight">
+                    Riders first, <span class="gradient-text">then everything else</span>
+                </h2>
+                <p class="reveal delay-200 mt-4 text-sm text-neutral-500 font-light max-w-lg mx-auto">Small team. Big
+                    passion. Every person here has logged more road miles than meetings.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-5">
+                <!-- Member 1 -->
+                <div class="reveal-card group">
+                    <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-sm h-80 bg-white">
+                        <img src="https://picsum.photos/seed/rider-founder-indian/400/500.jpg"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                            alt="Founder">
+                        <div class="team-img-overlay absolute inset-0"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h3 class="text-sm font-semibold text-white">Founder & Lead Rider</h3>
+                            <p class="text-xs text-red-400 mt-0.5 font-medium">Chief Problem Solver</p>
+                            <p class="text-[11px] text-neutral-400 mt-2 leading-relaxed">50,000+ km across India. Builds
+                                what he can't buy.</p>
+                            <div
+                                class="flex items-center gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:instagram" class="text-sm"></iconify-icon></a>
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:youtube" class="text-sm"></iconify-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="reveal-card delay-100 group">
+                    <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-sm h-80 bg-white">
+                        <img src="https://picsum.photos/seed/rider-engineer-workshop/400/500.jpg"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                            alt="Engineer">
+                        <div class="team-img-overlay absolute inset-0"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h3 class="text-sm font-semibold text-white">Product Engineer</h3>
+                            <p class="text-xs text-red-400 mt-0.5 font-medium">The Hands & Mind</p>
+                            <p class="text-[11px] text-neutral-400 mt-2 leading-relaxed">Turns sketches into solid
+                                metal. Precision is religion.</p>
+                            <div
+                                class="flex items-center gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:linkedin" class="text-sm"></iconify-icon></a>
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:instagram" class="text-sm"></iconify-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="reveal-card delay-200 group">
+                    <div class="relative rounded-2xl overflow-hidden border border-neutral-100 shadow-sm h-80 bg-white">
+                        <img src="https://picsum.photos/seed/rider-community-manager/400/500.jpg"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                            alt="Community">
+                        <div class="team-img-overlay absolute inset-0"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-5">
+                            <h3 class="text-sm font-semibold text-white">Community Manager</h3>
+                            <p class="text-xs text-red-400 mt-0.5 font-medium">The Voice</p>
+                            <p class="text-[11px] text-neutral-400 mt-2 leading-relaxed">Connects riders to the brand.
+                                Your feedback reaches here first.</p>
+                            <div
+                                class="flex items-center gap-3 mt-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:instagram" class="text-sm"></iconify-icon></a>
+                                <a href="#" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                        icon="mdi:twitter" class="text-sm"></iconify-icon></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Quote Section -->
+    <section class="relative z-10 py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal card rounded-2xl p-10 md:p-14 text-center relative overflow-hidden">
+                <!-- Red accent line top -->
+                <div
+                    class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent">
+                </div>
+
+                <iconify-icon icon="mdi:format-quote-open"
+                    class="text-5xl text-red-200 mb-4 block mx-auto"></iconify-icon>
+                <blockquote class="text-lg md:text-xl font-light text-neutral-700 leading-relaxed italic">
+                    "We don't sit in air-conditioned offices designing products we've never used. We ride through the
+                    heat, the rain, the dust — and we build what we wish we had. That's the difference."
+                </blockquote>
+                <div class="mt-8 flex items-center justify-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center">
+                        <iconify-icon icon="mdi:motorbike" class="text-white text-sm"></iconify-icon>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-sm font-semibold">DMototech Team</p>
+                        <p class="text-xs text-neutral-400">Dochaki — Built by Riders</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="relative z-10 py-28 px-6">
+        <div class="max-w-4xl mx-auto text-center relative">
+            <!-- Glow -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="w-[400px] h-[400px] rounded-full bg-red-100/60" style="filter: blur(100px);"></div>
+            </div>
+
+            <div class="relative">
+                <div
+                    class="reveal inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 border border-neutral-100 shadow-sm mb-8">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-[11px] uppercase tracking-wider text-neutral-500 font-medium">Taking orders
+                        pan-India</span>
+                </div>
+
+                <h2
+                    class="reveal delay-100 text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter leading-tight">
+                    Got a road<br>problem? <span class="gradient-text">Tell us.</span>
+                </h2>
+                <p class="reveal delay-200 mt-6 text-base font-light text-neutral-500 max-w-lg mx-auto leading-relaxed">
+                    We're always listening to riders. If there's something you wish existed, drop us a line. Who knows —
+                    your idea might be our next product.
+                </p>
+
+                <div class="reveal delay-300 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="mailto:hello@dmototech.com"
+                        class="cta-primary text-sm font-medium px-8 py-4 rounded-full flex items-center gap-2.5 shadow-lg">
+                        <iconify-icon icon="mdi:email-outline" class="text-base"></iconify-icon>
+                        hello@dmototech.com
+                    </a>
+                    <a href="https://instagram.com/dmototech" target="_blank"
+                        class="cta-secondary text-sm font-medium px-8 py-4 rounded-full flex items-center gap-2.5 bg-white">
+                        <iconify-icon icon="mdi:instagram" class="text-base text-accent"></iconify-icon>
+                        Follow on Instagram
+                    </a>
+                </div>
+
+                <!-- Trust badges -->
+                <div class="reveal delay-400 mt-14 flex flex-wrap items-center justify-center gap-8">
+                    <div class="flex items-center gap-2 text-neutral-400">
+                        <iconify-icon icon="mdi:truck-fast" class="text-lg"></iconify-icon>
+                        <span class="text-xs font-medium">Pan-India Shipping</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-neutral-400">
+                        <iconify-icon icon="mdi:shield-check" class="text-lg"></iconify-icon>
+                        <span class="text-xs font-medium">Quality Guaranteed</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-neutral-400">
+                        <iconify-icon icon="mdi:headset" class="text-lg"></iconify-icon>
+                        <span class="text-xs font-medium">Rider Support</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- <footer class="relative z-10 border-t border-neutral-200 bg-white/80 backdrop-blur-sm py-10 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="https://res.cloudinary.com/dhrqbdrkh/image/upload/v1782471800/dmotottech_awtowl.png"
+                        alt="DMototech" class="h-8 w-auto">
+                    <div>
+                        <p class="text-xs font-semibold">DMototech (Dochaki)</p>
+                        <p class="text-[10px] text-neutral-400">Rider-Focused Touring Accessories</p>
+                    </div>
+                </div>
+                <p class="text-xs text-neutral-400">© 2024 DMototech. All rights reserved. Made with 🏍️ in India.</p>
+                <div class="flex items-center gap-5">
+                    <a href="#" class="text-neutral-400 hover:text-accent transition-colors"><iconify-icon
+                            icon="mdi:instagram" class="text-lg"></iconify-icon></a>
+                    <a href="#" class="text-neutral-400 hover:text-accent transition-colors"><iconify-icon
+                            icon="mdi:youtube" class="text-lg"></iconify-icon></a>
+                    <a href="#" class="text-neutral-400 hover:text-accent transition-colors"><iconify-icon
+                            icon="mdi:facebook" class="text-lg"></iconify-icon></a>
+                    <a href="#" class="text-neutral-400 hover:text-accent transition-colors"><iconify-icon
+                            icon="mdi:twitter" class="text-lg"></iconify-icon></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+ -->
+    <script>
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-card');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ===== Counter Animation =====
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-target'));
+                    if (isNaN(target)) return;
+                    const suffix = el.textContent.includes('K') ? 'K+' : '+';
+                    let current = 0;
+                    const increment = Math.max(1, target / 50);
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        if (suffix === 'K+') {
+                            el.textContent = Math.floor(current) + 'K+';
+                        } else {
+                            el.textContent = Math.floor(current) + '+';
+                        }
+                    }, 35);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        statNumbers.forEach(el => counterObserver.observe(el));
+
+        // ===== Smooth Scroll =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== Nav scroll effect =====
+        const navGlass = document.querySelector('.nav-glass');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navGlass.style.background = 'rgba(255, 255, 255, 0.95)';
+                navGlass.style.boxShadow = '0 4px 30px rgba(0,0,0,0.08)';
+            } else {
+                navGlass.style.background = 'rgba(255, 255, 255, 0.85)';
+                navGlass.style.boxShadow = '0 4px 20px rgba(0,0,0,0.06)';
+            }
+        });
+    </script>
+</body>
+
+</html>

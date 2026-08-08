@@ -1,0 +1,228 @@
+/* =========================================
+   DMotoTech Thank You Page - Premium UI
+   ========================================= */
+
+:root {
+    --dm-ty-bg: #f9fafb;
+    --dm-ty-card-bg: #ffffff;
+    --dm-ty-text-dark: #1e293b;
+    --dm-ty-text-muted: #64748b;
+    --dm-ty-border: #e2e8f0;
+
+    /* Crimson Palette (Same as Checkout for Consistency) */
+    --dm-ty-primary: #DC143C;
+    --dm-ty-primary-dark: #B21031;
+    --dm-ty-primary-light: #FFF1F4;
+    --dm-ty-success: #10b981;
+
+    --dm-ty-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+}
+
+
+
+
+/* Base Page Setup */
+.dm-ty-page-wrapper {
+    background-color: var(--dm-ty-bg);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.dm-ty-container {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+/* Card Styling */
+.dm-ty-card {
+    background: var(--dm-ty-card-bg);
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: var(--dm-ty-shadow);
+    text-align: center;
+    border: 1px solid var(--dm-ty-border);
+    animation: dmTyCardFadeIn 0.5s ease-out;
+}
+
+@keyframes dmTyCardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Success Icon with Pulse Animation */
+.dm-ty-icon-wrapper {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    background: var(--dm-ty-primary-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: dmTyIconPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.dm-ty-icon-wrapper i {
+    font-size: 42px;
+    color: var(--dm-ty-primary);
+    z-index: 2;
+}
+
+/* Pulsing Ring Effect */
+.dm-ty-icon-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid var(--dm-ty-primary);
+    animation: dmTyPulse 1.5s infinite;
+    z-index: 1;
+}
+
+@keyframes dmTyIconPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes dmTyPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Typography */
+.dm-ty-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--dm-ty-text-dark);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.dm-ty-description {
+    font-size: 0.95rem;
+    color: var(--dm-ty-text-muted);
+    line-height: 1.6;
+    margin: 0 auto 28px;
+    max-width: 420px;
+}
+
+/* Info Banner / Shipping Box */
+.dm-ty-info-box {
+    background-color: var(--dm-ty-primary-light);
+    border: 1px solid rgba(220, 20, 60, 0.15);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    color: var(--dm-ty-primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 32px;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.dm-ty-info-box i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+/* Buttons System - Mobile First */
+.dm-ty-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.dm-ty-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+    width: 100%;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Primary Button (Crimson Gradient) */
+.dm-ty-btn-primary {
+    background: linear-gradient(135deg, #DC143C, #8B0000);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.25);
+}
+
+.dm-ty-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(220, 20, 60, 0.35);
+}
+
+/* Secondary Button (Charcoal Outline) */
+.dm-ty-btn-secondary {
+    background-color: transparent;
+    color: var(--dm-ty-text-dark);
+    border: 2px solid var(--dm-ty-border);
+}
+
+.dm-ty-btn-secondary:hover {
+    background-color: #f1f5f9;
+    border-color: var(--dm-ty-text-dark);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+
+@media (min-width: 520px) {
+    .dm-ty-card {
+        padding: 50px 40px;
+    }
+
+    .dm-ty-title {
+        font-size: 2.2rem;
+    }
+
+    /* Badi screens par buttons side-by-side ho jayenge */
+    .dm-ty-actions {
+        flex-direction: row;
+    }
+
+    .dm-ty-btn {
+        flex: 1;
+    }
+}

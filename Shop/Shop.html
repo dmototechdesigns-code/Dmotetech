@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dochaki Premium Grid Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Link Cleaned Isolated Unique CSS Stylesheet -->
+    <link rel="stylesheet" href="./shop.css">
+    <link rel="stylesheet" href="../Header/Header.css">
+    <link rel="stylesheet" href="../footer/footer.css">
+
+    <!-- Core Pipeline Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- CRITICAL: Execute shop scripts -->
+    <script src="../Js_file_global/Shop0013.js"></script>
+    <script type="module" src="../Js_files/Shop.js"></script>
+    <script src="../Js_files/Header.js"></script>
+</head>
+
+<body>
+
+    <!-- Global Header Placeholder -->
+    <div id="global-header"></div>
+
+    <!-- Main Clean Container Section -->
+    <section class="dks-shp-wrapper">
+        <div class="dks-shp-header">
+            <h1 class="dks-shp-title" id="main-shop-title">Shop By Motor Cycle</h1>
+            <p class="dks-shp-subtitle" id="product-count">Loading premium categories...</p>
+        </div>
+
+        <!-- Filter Navigation Segment Tabs -->
+        <div class="dks-shp-category-bar" id="category-tabs-container"></div>
+
+        <!-- Sync State Indicator -->
+        <div id="dks-shp-loading-state">Syncing live categories from database...</div>
+
+        <!-- Master Products Showcase Grid Layout -->
+        <div class="dks-shp-grid-layout" id="product-grid"></div>
+    </section>
+
+    <!-- Global Footer Placeholder -->
+    <div id="global-footer"></div>
+</body>
+
+</html>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Dmototech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            background: #fff;
+        }
+
+        .left-panel {
+            flex: 1;
+            background: #0f0f1a;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -80px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -60px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-logo iconify-icon {
+            color: #DC2626;
+            font-size: 28px;
+        }
+
+        .brand-logo span {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .left-heading {
+            color: #fff;
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-heading .highlight {
+            color: #DC2626;
+        }
+
+        .left-subtext {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            max-width: 380px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            color: #DC2626;
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .testimonials {
+            margin-top: 45px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 360px;
+        }
+
+        .testimonial-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-stars iconify-icon {
+            color: #DC2626;
+            font-size: 15px;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .author-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DC2626, #991B1B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .author-name {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .author-role {
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 11px;
+        }
+
+        .right-panel {
+            flex: 1;
+            background: #ffffff;
+            padding: 60px 55px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f0f1a;
+            letter-spacing: -0.8px;
+            margin-bottom: 6px;
+        }
+
+        .form-subtitle {
+            font-size: 14px;
+            color: #8a8a9a;
+            font-weight: 400;
+            margin-bottom: 36px;
+        }
+
+        .form-subtitle a {
+            color: #DC2626;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .form-subtitle a:hover {
+            text-decoration: underline;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a4a5a;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 7px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper iconify-icon.input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b0b0c0;
+            font-size: 18px;
+            pointer-events: none;
+            transition: color 0.25s;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            border: 1.5px solid #e2e2ea;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: #0f0f1a;
+            background: #fafafa;
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #c0c0cc;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #DC2626;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.07);
+        }
+
+        .input-wrapper input:focus~.input-icon {
+            color: #DC2626;
+        }
+
+        .input-wrapper input.input-error {
+            border-color: #DC2626;
+            background: #FEF2F2;
+        }
+
+        .input-wrapper input.input-error:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #b0b0c0;
+            font-size: 18px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .toggle-password:hover {
+            color: #DC2626;
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 26px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-checkbox {
+            position: relative;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #d0d0da;
+            border-radius: 4px;
+            background: #fafafa;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .checkmark iconify-icon {
+            color: #fff;
+            font-size: 12px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s;
+        }
+
+        .custom-checkbox input:checked~.checkmark {
+            background: #DC2626;
+            border-color: #DC2626;
+        }
+
+        .custom-checkbox input:checked~.checkmark iconify-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .checkbox-label {
+            font-size: 13px;
+            color: #6a6a7a;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .forgot-link {
+            font-size: 13px;
+            color: #DC2626;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .forgot-link:hover {
+            opacity: 0.75;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            background: #DC2626;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit:hover {
+            background: #B91C1C;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .btn-submit .btn-loading {
+            display: none;
+        }
+
+        .btn-submit.loading .btn-text {
+            display: none;
+        }
+
+        .btn-submit.loading .btn-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 26px 0;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: #e8e8f0;
+        }
+
+        .divider-text {
+            font-size: 11px;
+            color: #a0a0b0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-social {
+            flex: 1;
+            padding: 12px;
+            border: 1.5px solid #e2e2ea;
+            border-radius: 10px;
+            background: #fafafa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #4a4a5a;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .btn-social:hover {
+            border-color: #d0d0da;
+            background: #f0f0f5;
+            transform: translateY(-1px);
+        }
+
+        .btn-social iconify-icon {
+            font-size: 18px;
+        }
+
+        .btn-social.google iconify-icon {
+            color: #EA4335;
+        }
+
+        .btn-social.facebook iconify-icon {
+            color: #1877F2;
+        }
+
+        .btn-social .social-error {
+            display: none;
+            position: absolute;
+            bottom: -26px;
+            left: 0;
+            right: 0;
+            font-size: 11px;
+            color: #DC2626;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .btn-social.has-error .social-error {
+            display: block;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+            padding: 10px 14px;
+            background: rgba(220, 38, 38, 0.04);
+            border: 1px solid rgba(220, 38, 38, 0.1);
+            border-radius: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #DC2626;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+            }
+
+            50% {
+                opacity: 0.8;
+                box-shadow: 0 0 0 5px rgba(220, 38, 38, 0);
+            }
+        }
+
+        .connection-status span {
+            font-size: 12px;
+            color: #6a6a7a;
+            font-weight: 400;
+        }
+
+        .connection-status strong {
+            color: #DC2626;
+            font-weight: 600;
+        }
+
+        .error-msg {
+            font-size: 12px;
+            color: #DC2626;
+            margin-top: 6px;
+            display: none;
+            font-weight: 500;
+            align-items: center;
+            gap: 4px;
+            animation: shakeIn 0.35s ease;
+        }
+
+        .error-msg.visible {
+            display: flex;
+        }
+
+        .error-msg iconify-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        @keyframes shakeIn {
+            0% {
+                transform: translateX(-6px);
+                opacity: 0;
+            }
+
+            40% {
+                transform: translateX(4px);
+            }
+
+            70% {
+                transform: translateX(-2px);
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .global-error {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #FEF2F2;
+            border: 1px solid #FECACA;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: shakeIn 0.35s ease;
+        }
+
+        .global-error.visible {
+            display: flex;
+        }
+
+        .global-error iconify-icon {
+            color: #DC2626;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .global-error span {
+            font-size: 13px;
+            color: #991B1B;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .global-error .close-banner {
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #DC2626;
+            font-size: 18px;
+            padding: 0;
+            flex-shrink: 0;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .global-error .close-banner:hover {
+            opacity: 1;
+        }
+
+        .toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            z-index: 1000;
+            transform: translateX(140%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+            max-width: 400px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: #059669;
+            color: #fff;
+        }
+
+        .toast.error {
+            background: #DC2626;
+            color: #fff;
+        }
+
+        .toast.info {
+            background: #2563EB;
+            color: #fff;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+
+            .left-panel {
+                min-height: auto;
+                padding: 40px 30px;
+            }
+
+            .left-heading {
+                font-size: 30px;
+            }
+
+            .stats-row {
+                gap: 24px;
+            }
+
+            .stat-number {
+                font-size: 26px;
+            }
+
+            .testimonials {
+                display: none;
+            }
+
+            .right-panel {
+                min-height: auto;
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .left-panel {
+                padding: 30px 20px;
+            }
+
+            .left-heading {
+                font-size: 26px;
+            }
+
+            .brand-logo {
+                margin-bottom: 30px;
+            }
+
+            .right-panel {
+                padding: 30px 20px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+
+            .stats-row {
+                flex-direction: column;
+                gap: 14px;
+            }
+        }
+
+        .left-panel,
+        .right-panel {
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="left-panel">
+        <div class="brand-logo">
+            <iconify-icon icon="mdi:car-sports"></iconify-icon>
+            <span>Dmototech</span>
+        </div>
+        <h1 class="left-heading">WELCOME<br><span class="highlight">BACK</span></h1>
+        <p class="left-subtext">Sign in to access your dashboard, track orders, and manage your vehicle parts
+            collection.</p>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Happy Customers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">12K+</div>
+                <div class="stat-label">Products</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-label">Satisfaction</div>
+            </div>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">
+                    <iconify-icon icon="mdi:star"></iconify-icon>
+                    <iconify-icon icon="mdi:star"></iconify-icon>
+                    <iconify-icon icon="mdi:star"></iconify-icon>
+                    <iconify-icon icon="mdi:star"></iconify-icon>
+                    <iconify-icon icon="mdi:star"></iconify-icon>
+                </div>
+                <p class="testimonial-text">"Best platform for genuine auto parts. Fast delivery and amazing customer
+                    support!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MK</div>
+                    <div>
+                        <div class="author-name">Mike K.</div>
+                        <div class="author-role">Verified Buyer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <div class="form-container">
+
+            <div class="global-error" id="globalError">
+                <iconify-icon icon="mdi:alert-octagon"></iconify-icon>
+                <span id="globalErrorMsg">Something went wrong.</span>
+                <button class="close-banner" onclick="closeGlobalError()">
+                    <iconify-icon icon="mdi:close"></iconify-icon>
+                </button>
+            </div>
+
+            <h2 class="form-title">SIGN IN</h2>
+            <p class="form-subtitle">Don't have an account? <a href="#">Create one</a></p>
+
+            <form id="loginForm" novalidate>
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+                        <iconify-icon icon="mdi:email-outline" class="input-icon"></iconify-icon>
+                    </div>
+                    <div class="error-msg" id="emailError">
+                        <iconify-icon icon="mdi:alert-circle"></iconify-icon>
+                        <span>Please enter a valid email address</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Enter your password" required
+                            autocomplete="current-password">
+                        <iconify-icon icon="mdi:lock-outline" class="input-icon"></iconify-icon>
+                        <button type="button" class="toggle-password" id="togglePassBtn">
+                            <iconify-icon icon="mdi:eye-off-outline" id="eyeIcon"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="error-msg" id="passError">
+                        <iconify-icon icon="mdi:alert-circle"></iconify-icon>
+                        <span>Password is required</span>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <div class="checkbox-group">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="remember">
+                            <div class="checkmark">
+                                <iconify-icon icon="mdi:check"></iconify-icon>
+                            </div>
+                        </div>
+                        <label class="checkbox-label" for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-link" id="forgotLink">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <span class="btn-text">Login</span>
+                    <span class="btn-loading">
+                        <span class="spinner"></span>
+                        Signing in...
+                    </span>
+                </button>
+            </form>
+
+            <div class="divider">
+                <div class="divider-line"></div>
+                <span class="divider-text">or continue with</span>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="social-buttons" style="margin-bottom: 8px;">
+                <button type="button" class="btn-social google" id="btnGoogle">
+                    <iconify-icon icon="flat-color-icons:google"></iconify-icon>
+                    Google
+                    <span class="social-error" id="googleError"></span>
+                </button>
+                <button type="button" class="btn-social facebook" id="btnFacebook">
+                    <iconify-icon icon="logos:facebook"></iconify-icon>
+                    Facebook
+                    <span class="social-error" id="facebookError"></span>
+                </button>
+            </div>
+
+            <div class="connection-status">
+                <div class="status-dot"></div>
+                <span>Connection: <strong>Secure (SSL Encrypted)</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <iconify-icon icon="mdi:check-circle" id="toastIcon"></iconify-icon>
+        <span id="toastMsg"></span>
+    </div>
+
+    <script>
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  ⚙️ SUPABASE CONFIG — APNI REAL VALUES DAALO                 ║
+        // ║  Dashboard > Settings > API se copy karo                      ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        var SUPABASE_URL = 'https://ycipxljvymewdltlblvn.supabase.co';
+        var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InljaXB4bGp2eW1ld2RsdGxibHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzNzA5MzksImV4cCI6MjA5Nzk0NjkzOX0.dleDKMUuavLtA_pPKicnBexgGb4SqOGM7oU7QoEBm9I';
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🔗 REDIRECT URLs — Apni site ke hisaab se set karo           ║
+        // ║  Example: "https://dmototech.com" ya "http://localhost:5500"   ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        var SITE_BASE_URL = window.location.origin;
+        var LOGIN_REDIRECT = SITE_BASE_URL + '/index.html';
+        var OAUTH_REDIRECT = SITE_BASE_URL + '/index.html';
+        var RESET_REDIRECT = SITE_BASE_URL + '/index.html';
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🔍 ENVIRONMENT CHECK                                         ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        (function envCheck() {
+            // file:// se chala rahe ho to warning
+            if (window.location.protocol === 'file:') {
+                console.warn(
+                    '%c⚠️ LOCAL FILE DETECTED!\n' +
+                    'OAuth, forgot password aur kuch API calls fail hongi.\n' +
+                    'Use: http://127.0.0.1:5500 ya http://localhost:5500\n' +
+                    'VS Code → Live Server extension use karo.',
+                    'color: #DC2626; font-size: 14px; font-weight: bold;'
+                );
+            }
+
+            // Supabase config check
+            if (SUPABASE_URL === 'https://YOUR_PROJECT_ID.supabase.co' || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY === 'YOUR_ANON_KEY_HERE') {
+                console.error(
+                    '%c❌ SUPABASE NOT CONFIGURED!\n' +
+                    'JS file mein upar SUPABASE_URL aur SUPABASE_ANON_KEY daalo.\n' +
+                    'Values milegi: Supabase Dashboard → Settings → API',
+                    'color: #DC2626; font-size: 14px; font-weight: bold;'
+                );
+            }
+
+            // Google OAuth check
+            console.info(
+                '%cℹ️ OAuth Setup Required:\n' +
+                'Supabase Dashboard → Authentication → Providers\n' +
+                '→ Google: Enable + Client ID/Secret daalo + Redirect URL add karo\n' +
+                '→ Facebook: Enable + App ID/Secret daalo + Redirect URL add karo\n' +
+                'Redirect URL: ' + OAUTH_REDIRECT,
+                'color: #2563EB; font-size: 12px;'
+            );
+        })();
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🚀 SUPABASE CLIENT INIT                                      ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        var supabaseClient = null;
+        var initError = null;
+
+        try {
+            if (typeof window.supabase === 'undefined') {
+                throw new Error('Supabase SDK not loaded. Check <script> tag in HTML.');
+            }
+            if (SUPABASE_URL === 'https://YOUR_PROJECT_ID.supabase.co' || SUPABASE_ANON_KEY === 'YOUR_ANON_KEY_HERE') {
+                throw new Error('Supabase URL ya Anon Key placeholder hai. JS file mein real values daalo.');
+            }
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (err) {
+            initError = err.message;
+            console.error('Supabase init failed:', initError);
+        }
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🛠️ HELPER FUNCTIONS                                          ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+
+        // Field level error dikhao
+        function showFieldError(fieldId, errorId, message) {
+            var field = document.getElementById(fieldId);
+            var error = document.getElementById(errorId);
+            if (field) field.classList.add('input-error');
+            if (error) {
+                error.querySelector('span').textContent = message;
+                error.classList.add('visible');
+            }
+        }
+
+        // Field level error hatao
+        function clearFieldError(fieldId, errorId) {
+            var field = document.getElementById(fieldId);
+            var error = document.getElementById(errorId);
+            if (field) field.classList.remove('input-error');
+            if (error) error.classList.remove('visible');
+        }
+
+        // Sab errors hatao
+        function clearAllErrors() {
+            clearFieldError('email', 'emailError');
+            clearFieldError('password', 'passError');
+            closeGlobalError();
+            var btnG = document.getElementById('btnGoogle');
+            var btnF = document.getElementById('btnFacebook');
+            if (btnG) btnG.classList.remove('has-error');
+            if (btnF) btnF.classList.remove('has-error');
+        }
+
+        // Global red banner (network/server errors)
+        function showGlobalError(message) {
+            var el = document.getElementById('globalError');
+            if (!el) return;
+            document.getElementById('globalErrorMsg').textContent = message;
+            el.classList.add('visible');
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function closeGlobalError() {
+            var el = document.getElementById('globalError');
+            if (el) el.classList.remove('visible');
+        }
+
+        // Social button ke neeche error
+        function showSocialError(btnId, errorId, message) {
+            var btn = document.getElementById(btnId);
+            var err = document.getElementById(errorId);
+            if (btn) btn.classList.add('has-error');
+            if (err) err.textContent = message;
+        }
+
+        // Toast notification
+        function showToast(msg, type) {
+            type = type || 'success';
+            var t = document.getElementById('toast');
+            var i = document.getElementById('toastIcon');
+            var m = document.getElementById('toastMsg');
+            if (!t) return;
+            t.className = 'toast ' + type;
+            var icons = {
+                success: 'mdi:check-circle',
+                error: 'mdi:alert-circle',
+                info: 'mdi:information'
+            };
+            i.setAttribute('icon', icons[type] || icons.success);
+            m.textContent = msg;
+            requestAnimationFrame(function () { t.classList.add('show'); });
+            setTimeout(function () { t.classList.remove('show'); }, 4500);
+        }
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🧹 ERROR MESSAGE CLEANER                                     ║
+        // ║  Supabase ke raw errors ko user-friendly banata hai            ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        function getCleanError(error) {
+            // No internet
+            if (!navigator.onLine) {
+                return 'No internet connection. Please check your network and try again.';
+            }
+
+            // Fetch / Network fail
+            if (error instanceof TypeError) {
+                var msg = error.message || '';
+                if (msg.indexOf('fetch') !== -1 || msg.indexOf('Failed to fetch') !== -1 || msg.indexOf('NetworkError') !== -1) {
+                    return 'Unable to connect to server. Please check your internet connection.';
+                }
+            }
+
+            var raw = (error && error.message) || '';
+            if (!raw) return 'An unexpected error occurred. Please try again.';
+
+            // Exact match map
+            var exactMap = {
+                'Invalid login credentials': 'Invalid email or password. Please check your credentials.',
+                'Email not confirmed': 'Your email is not verified. Check your inbox for the verification link.',
+                'Too many requests': 'Too many attempts. Wait a few minutes and try again.',
+                'User not found': 'No account found with this email address.',
+                'Invalid email': 'Please enter a valid email address.',
+                'Network request failed': 'Network error. Please check your internet connection.',
+                'Failed to fetch': 'Unable to reach the server. Please try again.'
+            };
+
+            if (exactMap[raw]) return exactMap[raw];
+
+            // Partial match
+            var lower = raw.toLowerCase();
+
+            if (lower.indexOf('network') !== -1 || lower.indexOf('fetch') !== -1 || lower.indexOf('connect') !== -1) {
+                return 'Network error. Please check your internet connection and try again.';
+            }
+            if (lower.indexOf('timeout') !== -1 || lower.indexOf('timed out') !== -1) {
+                return 'Request timed out. Server is slow. Please try again.';
+            }
+            if (lower.indexOf('internal') !== -1 || lower.indexOf('500') !== -1 || lower.indexOf('server error') !== -1) {
+                return 'Server error (500). Please try again after some time.';
+            }
+            if (lower.indexOf('cors') !== -1) {
+                return 'CORS blocked. Supabase Dashboard → Authentication → URL Configuration mein "' + SITE_BASE_URL + '" add karo.';
+            }
+            if (lower.indexOf('invalid api key') !== -1 || lower.indexOf('api key') !== -1) {
+                return 'Invalid Supabase Anon Key. JS file mein correct key daalo.';
+            }
+            if (lower.indexOf('url') !== -1 && lower.indexOf('supabase') !== -1) {
+                return 'Invalid Supabase URL. JS file mein correct project URL daalo.';
+            }
+
+            // Password related — Supabase ka message hi dikhao (frontend restriction nahi)
+            if (lower.indexOf('password') !== -1) {
+                return raw;
+            }
+
+            // Email related
+            if (lower.indexOf('email') !== -1) {
+                return raw;
+            }
+
+            // Fallback — raw message
+            return raw;
+        }
+
+        // Error ko sahi field pe lagao
+        function showErrorOnField(cleanMsg) {
+            var lower = cleanMsg.toLowerCase();
+
+            if (lower.indexOf('password') !== -1 && lower.indexOf('email') === -1) {
+                showFieldError('password', 'passError', cleanMsg);
+            } else if (lower.indexOf('email') !== -1 || lower.indexOf('account') !== -1 || lower.indexOf('not found') !== -1 || lower.indexOf('verified') !== -1 || lower.indexOf('confirm') !== -1) {
+                showFieldError('email', 'emailError', cleanMsg);
+            } else if (lower.indexOf('network') !== -1 || lower.indexOf('connect') !== -1 || lower.indexOf('timeout') !== -1 || lower.indexOf('server') !== -1 || lower.indexOf('cors') !== -1 || lower.indexOf('api key') !== -1 || lower.indexOf('unexpected') !== -1) {
+                showGlobalError(cleanMsg);
+            } else {
+                showGlobalError(cleanMsg);
+            }
+        }
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  👁️ TOGGLE PASSWORD                                           ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('togglePassBtn').addEventListener('click', function () {
+            var p = document.getElementById('password');
+            var e = document.getElementById('eyeIcon');
+            if (p.type === 'password') {
+                p.type = 'text';
+                e.setAttribute('icon', 'mdi:eye-outline');
+            } else {
+                p.type = 'password';
+                e.setAttribute('icon', 'mdi:eye-off-outline');
+            }
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  ✏️ CLEAR ERRORS ON TYPING                                    ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('email').addEventListener('input', function () {
+            clearFieldError('email', 'emailError');
+            closeGlobalError();
+        });
+        document.getElementById('password').addEventListener('input', function () {
+            clearFieldError('password', 'passError');
+            closeGlobalError();
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🔥 LOGIN FORM SUBMIT                                          ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            clearAllErrors();
+
+            var emailInput = document.getElementById('email');
+            var passInput = document.getElementById('password');
+            var btn = document.getElementById('submitBtn');
+
+            var email = emailInput.value.trim();
+            var password = passInput.value;
+            var valid = true;
+
+            // ── Frontend validation ──
+            if (!email) {
+                showFieldError('email', 'emailError', 'Email address is required');
+                valid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showFieldError('email', 'emailError', 'Please enter a valid email (e.g. you@example.com)');
+                valid = false;
+            }
+
+            if (!password) {
+                showFieldError('password', 'passError', 'Password is required');
+                valid = false;
+            }
+            // ⚠️ Password length check HATA DIYA — Supabase backend handle karega
+            // Agar Supabase ne "too short" error bheja to wo getCleanError() se clean hoke field pe dikhega
+
+            if (!valid) return;
+
+            // ── Supabase init check ──
+            if (!supabaseClient) {
+                showGlobalError(initError || 'Supabase not configured. Check JS file for SUPABASE_URL and SUPABASE_ANON_KEY.');
+                showToast('Configuration error — see details above', 'error');
+                return;
+            }
+
+            // ── Loading start ──
+            btn.classList.add('loading');
+            btn.disabled = true;
+
+            supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            }).then(function (result) {
+                var data = result.data;
+                var error = result.error;
+
+                if (error) throw error;
+
+                // ✅ SUCCESS — user data save karo
+                var user = data.user;
+                localStorage.setItem('dmototech_user', JSON.stringify({
+                    id: user.id,
+                    email: user.email,
+                    name: (user.user_metadata && user.user_metadata.full_name) || user.email,
+                    avatar: (user.user_metadata && user.user_metadata.avatar_url) || ''
+                }));
+
+                // Remember me unchecked → session storage flag
+                if (!document.getElementById('remember').checked) {
+                    sessionStorage.setItem('dmototech_session_only', 'true');
+                }
+
+                showToast('Welcome back! Redirecting...', 'success');
+                setTimeout(function () {
+                    window.location.href = LOGIN_REDIRECT;
+                }, 1200);
+
+            }).catch(function (error) {
+                // ❌ ERROR — teeno jagah dikhao
+                btn.classList.remove('loading');
+                btn.disabled = false;
+
+                var cleanMsg = getCleanError(error);
+                showErrorOnField(cleanMsg);
+                showToast(cleanMsg, 'error');
+                console.error('Login error:', error);
+            });
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🌐 GOOGLE OAUTH                                              ║
+        // ║  ⚠️ Supabase Dashboard → Authentication → Providers           ║
+        // ║     → Google: Enable karo + Client ID/Secret daalo             ║
+        // ║     → Redirect URLs mein OAUTH_REDIRECT add karo               ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('btnGoogle').addEventListener('click', function () {
+            clearAllErrors();
+
+            if (!supabaseClient) {
+                showSocialError('btnGoogle', 'googleError', 'Supabase not configured');
+                return;
+            }
+
+            if (window.location.protocol === 'file:') {
+                showSocialError('btnGoogle', 'googleError', 'OAuth needs a server. Use Live Server (localhost), not file://');
+                showToast('Cannot use OAuth from file:// protocol', 'error');
+                return;
+            }
+
+            supabaseClient.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: OAUTH_REDIRECT
+                }
+            }).then(function (result) {
+                if (result.error) throw result.error;
+            }).catch(function (err) {
+                var msg = getCleanError(err);
+                showSocialError('btnGoogle', 'googleError', msg);
+                showToast(msg, 'error');
+            });
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🌐 FACEBOOK OAUTH                                            ║
+        // ║  ⚠️ Supabase Dashboard → Authentication → Providers           ║
+        // ║     → Facebook: Enable karo + App ID/Secret daalo              ║
+        // ║     → Redirect URLs mein OAUTH_REDIRECT add karo               ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('btnFacebook').addEventListener('click', function () {
+            clearAllErrors();
+
+            if (!supabaseClient) {
+                showSocialError('btnFacebook', 'facebookError', 'Supabase not configured');
+                return;
+            }
+
+            if (window.location.protocol === 'file:') {
+                showSocialError('btnFacebook', 'facebookError', 'OAuth needs a server. Use Live Server (localhost), not file://');
+                showToast('Cannot use OAuth from file:// protocol', 'error');
+                return;
+            }
+
+            supabaseClient.auth.signInWithOAuth({
+                provider: 'facebook',
+                options: {
+                    redirectTo: OAUTH_REDIRECT
+                }
+            }).then(function (result) {
+                if (result.error) throw result.error;
+            }).catch(function (err) {
+                var msg = getCleanError(err);
+                showSocialError('btnFacebook', 'facebookError', msg);
+                showToast(msg, 'error');
+            });
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🔑 FORGOT PASSWORD                                            ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.getElementById('forgotLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            clearAllErrors();
+
+            var email = document.getElementById('email').value.trim();
+
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showFieldError('email', 'emailError', 'Enter your email first to send a reset link');
+                document.getElementById('email').focus();
+                return;
+            }
+
+            if (!supabaseClient) {
+                showGlobalError(initError || 'Supabase not configured.');
+                showToast('Configuration error', 'error');
+                return;
+            }
+
+            supabaseClient.auth.resetPasswordForEmail(email, {
+                redirectTo: RESET_REDIRECT
+            }).then(function (result) {
+                if (result.error) throw result.error;
+                showToast('Reset link sent to ' + email + '! Check your inbox.', 'success');
+            }).catch(function (err) {
+                var msg = getCleanError(err);
+                showFieldError('email', 'emailError', msg);
+                showToast(msg, 'error');
+            });
+        });
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🔍 AUTO-REDIRECT — Already logged in?                        ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        (function checkSession() {
+            if (!supabaseClient) return;
+
+            supabaseClient.auth.getSession().then(function (result) {
+                var session = result.data.session;
+                if (session && session.user) {
+                    localStorage.setItem('dmototech_user', JSON.stringify({
+                        id: session.user.id,
+                        email: session.user.email,
+                        name: (session.user.user_metadata && session.user.user_metadata.full_name) || session.user.email,
+                        avatar: (session.user.user_metadata && session.user.user_metadata.avatar_url) || ''
+                    }));
+                    window.location.replace(LOGIN_REDIRECT);
+                }
+            }).catch(function (err) {
+                // Session check fail — login page hi dikhao, koi error mat dikhao
+                console.log('Session check skipped:', err.message);
+            });
+        })();
+
+
+        // ╔══════════════════════════════════════════════════════════════════╗
+        // ║  🎨 INPUT FOCUS — Icon color change                           ║
+        // ╚══════════════════════════════════════════════════════════════════╝
+        document.querySelectorAll('.input-wrapper input').forEach(function (inp) {
+            inp.addEventListener('focus', function () {
+                var ic = this.parentElement.querySelector('.input-icon');
+                if (ic) ic.style.color = '#DC2626';
+            });
+            inp.addEventListener('blur', function () {
+                var ic = this.parentElement.querySelector('.input-icon');
+                if (ic) ic.style.color = '#b0b0c0';
+            });
+        });
+    </script>
+</body>
+
+</html>

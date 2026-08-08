@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>My Account | DMotoTech Official</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./My_account.css">
+
+    <!-- SUPABASE CONNECTION & INTERACTIVE SCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../Js_files/MyAccount.js" defer></script>
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <!-- BRAND TOP NAVBAR -->
+    <header class="dm-acc-header">
+        <div class="dm-acc-brand-logo">
+            <img src="https://res.cloudinary.com/dhrqbdrkh/image/upload/v1782471800/dmotottech_awtowl.png"
+                alt="DMotoTech Logo">
+        </div>
+        <a href="./index.html" class="dm-acc-home-btn">
+            <i class="fa-solid fa-house"></i> Go To Home
+        </a>
+    </header>
+
+    <!-- MAIN INTERFACE -->
+    <main class="dm-acc-wrapper">
+
+        <!-- SIDEBAR NAVIGATION HUB -->
+        <div class="dm-acc-sidebar" id="sidebar-navigation-hub">
+            <div class="dm-acc-user-card">
+                <div class="dm-acc-avatar" id="hero-user-avatar">--</div>
+                <div class="dm-acc-user-meta">
+                    <h3 id="hero-user-name">Loading...</h3>
+                    <p><i class="fa-solid fa-circle-check"></i> Verified Rider</p>
+                </div>
+            </div>
+
+            <nav class="dm-acc-nav-list">
+                <button class="dm-acc-nav-item desktop-active" onclick="routeToAccountSection('orders', this)">
+                    <span class="dm-acc-nav-left"><i class="fa-solid fa-box"></i> My Orders</span>
+                    <i class="fa-solid fa-chevron-right dm-acc-chevron"></i>
+                </button>
+                <button class="dm-acc-nav-item" onclick="routeToAccountSection('profile', this)">
+                    <span class="dm-acc-nav-left"><i class="fa-solid fa-user"></i> Profile Settings</span>
+                    <i class="fa-solid fa-chevron-right dm-acc-chevron"></i>
+                </button>
+                <button class="dm-acc-nav-item" onclick="routeToAccountSection('address', this)">
+                    <span class="dm-acc-nav-left"><i class="fa-solid fa-map-pin"></i> Saved Addresses</span>
+                    <i class="fa-solid fa-chevron-right dm-acc-chevron"></i>
+                </button>
+                <button class="dm-acc-nav-item dm-acc-logout" onclick="handleLogoutSystem()">
+                    <span class="dm-acc-nav-left"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</span>
+                    <i class="fa-solid fa-chevron-right dm-acc-chevron"></i>
+                </button>
+            </nav>
+        </div>
+
+        <!-- TARGET CONTENT BLOCKS PANEL AREA -->
+        <div class="dm-acc-content-area">
+
+            <div class="dm-acc-mobile-back" id="mobileBackBtn" onclick="returnBackToMenuList()">
+                <i class="fa-solid fa-arrow-left"></i> Back to Account Menu
+            </div>
+
+            <!-- SECTION 1: ORDERS -->
+            <div class="dm-acc-panel desktop-active" id="sect-orders">
+                <div class="dm-acc-panel-head">
+                    <h2>Your Orders</h2>
+                    <p>Review and track all your historical and live purchases.</p>
+                </div>
+                <div id="orders-container" class="dm-acc-order-stack">
+                    <p class="dm-acc-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading your orders...</p>
+                </div>
+            </div>
+
+            <!-- SECTION 2: PROFILE SETTINGS -->
+            <div class="dm-acc-panel" id="sect-profile">
+                <div class="dm-acc-panel-head dm-acc-head-flex">
+                    <div>
+                        <h2>Profile Settings</h2>
+                        <p id="profile-sub-text">View your personal account credentials securely.</p>
+                    </div>
+                    <button type="button" class="dm-acc-edit-btn" id="edit-mode-trigger"
+                        onclick="switchProfileToEditMode()">
+                        <i class="fa-solid fa-pen-to-square"></i> Edit Profile
+                    </button>
+                </div>
+
+                <form class="dm-acc-form-layout" id="profile-master-form" onsubmit="handleProfileFormSubmit(event)">
+                    <div class="dm-acc-field">
+                        <label>Full Name</label>
+                        <div id="view-layer-name" class="dm-acc-view-data">--</div>
+                        <input type="text" id="input-layer-name" class="hidden-element" required>
+                    </div>
+
+                    <div class="dm-acc-field">
+                        <label>Email Address</label>
+                        <div id="view-layer-email" class="dm-acc-view-data">--</div>
+                        <input type="email" id="input-layer-email" class="hidden-element" disabled
+                            title="Email change requires authentication verification">
+                    </div>
+
+                    <div class="dm-acc-field">
+                        <label>Phone Number</label>
+                        <div id="view-layer-phone" class="dm-acc-view-data">--</div>
+                        <input type="tel" id="input-layer-phone" class="hidden-element" required>
+                    </div>
+
+                    <div class="dm-acc-form-actions hidden-element" id="form-action-controls">
+                        <button type="submit" class="dm-acc-btn-primary" id="profile-save-btn">Save
+                            Configurations</button>
+                        <button type="button" class="dm-acc-btn-secondary"
+                            onclick="switchProfileToViewMode()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- SECTION 3: SAVED ADDRESSES -->
+            <div class="dm-acc-panel" id="sect-address">
+                <div class="dm-acc-panel-head">
+                    <h2>Saved Addresses</h2>
+                    <p>Jitne chahein utne addresses save karein. Default delivery Primary Address par hi hogi.</p>
+                </div>
+
+                <button type="button" class="dm-acc-add-addr-btn" id="btn-show-add-form" onclick="openNewAddressForm()">
+                    <i class="fa-solid fa-plus"></i> Add A New Address
+                </button>
+
+                <!-- DYNAMIC ADDRESS EDITOR FORM LAYER -->
+                <div class="dm-acc-addr-form hidden-element" id="eco-address-form-container">
+                    <h3 id="form-action-title" class="dm-acc-form-title">Add New Address</h3>
+                    <form class="dm-acc-form-layout dm-acc-form-inline" onsubmit="handleAddressFormSubmit(event)">
+                        <input type="hidden" id="input-eco-id" value="">
+
+                        <div class="dm-acc-row-2">
+                            <div class="dm-acc-field">
+                                <label>Address Type Tag</label>
+                                <select id="input-eco-tag">
+                                    <option value="Home">Home (All Day Delivery)</option>
+                                    <option value="Work">Office (10 AM - 6 PM Delivery)</option>
+                                </select>
+                            </div>
+                            <div class="dm-acc-field">
+                                <label>Receiver Full Name</label>
+                                <input type="text" id="input-eco-name" required>
+                            </div>
+                        </div>
+
+                        <div class="dm-acc-field">
+                            <label>Flat, House no., Building, Company, Apartment</label>
+                            <input type="text" id="input-eco-flat" required>
+                        </div>
+
+                        <div class="dm-acc-field">
+                            <label>Area, Colony, Street, Sector, Village, Landmark</label>
+                            <input type="text" id="input-eco-area" required>
+                        </div>
+
+                        <div class="dm-acc-row-2">
+                            <div class="dm-acc-field">
+                                <label>Pincode (6 Digits)</label>
+                                <input type="text" id="input-eco-pincode" pattern="[0-9]{6}" maxlength="6"
+                                    placeholder="e.g. 462016" required>
+                            </div>
+                            <div class="dm-acc-field">
+                                <label>Town / City</label>
+                                <input type="text" id="input-eco-city" required>
+                            </div>
+                        </div>
+
+                        <div class="dm-acc-row-2">
+                            <div class="dm-acc-field">
+                                <label>State</label>
+                                <input type="text" id="input-eco-state" required>
+                            </div>
+                            <div class="dm-acc-field">
+                                <label>Mobile Number</label>
+                                <input type="tel" id="input-eco-phone" required>
+                            </div>
+                        </div>
+
+                        <div class="dm-acc-form-actions" style="margin-top: 16px;">
+                            <button type="submit" class="dm-acc-btn-primary" id="address-save-btn">Save Address</button>
+                            <button type="button" class="dm-acc-btn-secondary"
+                                onclick="closeAddressForm()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- RENDERING LIST HUB FOR MULTIPLE ADDRESSES -->
+                <div class="dm-acc-addr-grid" id="address-list-render-hub">
+                    <p class="dm-acc-loading"><i class="fa-solid fa-spinner fa-spin"></i> Loading your saved
+                        addresses...</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

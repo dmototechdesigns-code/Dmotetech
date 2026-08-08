@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - DMotoTech By Dochaki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS for Product Detail -->
+    <link href="./product_detail.css" rel="stylesheet">
+    <link href="../Header/Header.css" rel="stylesheet">
+    <link href="../footer/footer.css" rel="stylesheet">
+
+    <!-- Supabase SDK for data fetch -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <div class="dmt-detail-container">
+        <!-- Breadcrumb Area -->
+        <div class="dmt-breadcrumb">
+            <a href="../index.html">Home</a> &raquo;
+            <a href="../Shop/Shop.html">Shop</a> &raquo;
+            <span class="dmt-js-crumbs">Product Details</span>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="dmt-product-hero">
+            <div class="dmt-product-gallery">
+                <img src="https://via.placeholder.com/600x600?text=DMotoTech+Product" alt="Product Image"
+                    class="dmt-js-img">
+            </div>
+
+            <div class="dmt-product-essential">
+                <h1 class="dmt-product-title dmt-js-title">Loading Product Specification...</h1>
+
+                <div class="dmt-price-row">
+                    <span class="dmt-price-main dmt-js-price">&#8377;0</span>
+                    <span class="dmt-price-tax">(incl. Tax)</span>
+                </div>
+
+                <!-- Short Description -->
+                <p class="dmt-short-description dmt-js-short-desc">Short description loading...</p>
+
+                <!-- Key Features 1 -->
+                <div class="dmt-hero-features-wrapper">
+                    <h3>Key Features</h3>
+                    <ul class="dmt-js-hero-features">
+                        <!-- Dynamically filled -->
+                    </ul>
+                </div>
+
+                <!-- Configure Box -->
+                <div class="dmt-configure-box">
+                    <div class="dmt-option-row dmt-js-bolt-row">
+                        <span class="dmt-option-label">Bolt Size</span>
+                        <select class="dmt-selector-dropdown dmt-js-bolt-select">
+                            <option value="">Choose an option</option>
+                            <option value="M6">M6</option>
+                            <option value="M8">M8</option>
+                        </select>
+                    </div>
+
+                    <div class="dmt-cart-action-row">
+                        <input type="number" class="dmt-qty-input" value="1" min="1">
+                        <button type="button" class="dmt-btn-add-cart" onclick="addProductToCart()">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="dmt-meta-block">
+                    <div>SKU: <strong>N/A</strong></div>
+                    <div>Categories: <strong class="dmt-js-categories">Loading...</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs Navigation & Panels -->
+        <div class="dmt-tabs-wrapper">
+            <div class="dmt-tabs-header">
+                <button class="dmt-tab-trigger dmt-js-tab-btn active"
+                    onclick="switchTab(event, 'dmt-panel-description')">Description</button>
+                <button class="dmt-tab-trigger dmt-js-tab-btn"
+                    onclick="switchTab(event, 'dmt-panel-additional')">Additional information</button>
+                <button class="dmt-tab-trigger dmt-js-tab-btn dmt-js-reviews-count-btn"
+                    onclick="switchTab(event, 'dmt-panel-reviews')">Reviews (0)</button>
+            </div>
+
+            <!-- Description Tab Panel -->
+            <div id="dmt-panel-description" class="dmt-tab-content-panel active">
+                <div class="dmt-panel-html-content">
+                    <h2 class="dmt-js-inner-title">Product Description Setup</h2>
+                    <div class="dmt-callout-box dmt-js-callout">
+                        <!-- Loaded dynamically -->
+                    </div>
+                    <div class="dmt-long-desc-wrapper dmt-js-long-desc">
+                        <!-- Loaded dynamically -->
+                    </div>
+                    <h2 class="dmt-js-features-heading">Key Features</h2>
+                    <ul class="dmt-features-list dmt-js-features-list">
+                        <!-- Dynamically filled -->
+                    </ul>
+                    <p class="dmt-promo-footer">For bike modification or customization visit to Dochaki Designs or
+                        contact us.</p>
+                </div>
+            </div>
+
+            <!-- Additional Info Tab Panel -->
+            <div id="dmt-panel-additional" class="dmt-tab-content-panel">
+                <table class="dmt-info-table">
+                    <tr>
+                        <td class="dmt-label-td">Weight</td>
+                        <td class="dmt-value-td dmt-js-table-weight">N/A</td>
+                    </tr>
+                    <tr>
+                        <td class="dmt-label-td">Dimensions</td>
+                        <td class="dmt-value-td dmt-js-table-dimensions">N/A</td>
+                    </tr>
+                    <tr class="dmt-js-table-bolt-row">
+                        <td class="dmt-label-td">Bolt Size</td>
+                        <td class="dmt-value-td dmt-js-table-bolt-sizes">N/A</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Reviews Tab Panel -->
+            <div id="dmt-panel-reviews" class="dmt-tab-content-panel">
+                <div class="dmt-review-box">
+                    <p class="dmt-review-title dmt-js-review-header">There are no reviews yet.</p>
+                    <div class="dmt-rendered-reviews dmt-js-reviews-container"></div>
+
+                    <div class="dmt-review-form-card">
+                        <h4>Be the first to review this product</h4>
+                        <div class="dmt-form-group">
+                            <label>Your Name *</label>
+                            <input type="text" class="dmt-form-control dmt-js-input-name" required
+                                placeholder="Enter your name">
+                        </div>
+                        <div class="dmt-form-group">
+                            <label>Your Rating *</label>
+                            <select class="dmt-selector-dropdown dmt-js-input-rating">
+                                <option value="">Rate...</option>
+                                <option value="5">5 - Perfect</option>
+                                <option value="4">4 - Good</option>
+                                <option value="3">3 - Average</option>
+                                <option value="2">2 - Bad</option>
+                                <option value="1">1 - Terrible</option>
+                            </select>
+                        </div>
+                        <div class="dmt-form-group">
+                            <label>Your Review *</label>
+                            <textarea class="dmt-form-control dmt-js-input-comment" rows="5"
+                                placeholder="Write your review here..."></textarea>
+                        </div>
+                        <button class="dmt-btn-submit" onclick="submitReview()">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="global-footer"></div>
+
+    <!-- Header logic and product detail data loader -->
+    <script src="../Js_files/Header.js"></script>
+    <script src="./product_detail.js"></script>
+</body>
+
+</html>

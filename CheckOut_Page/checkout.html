@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | DMotoTech Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Global CSS links -->
+    <link rel="stylesheet" href="../Header/Header.css">
+    <!-- Clean Isolated Separate CSS Linked Below -->
+    <link rel="stylesheet" href="./Checkout.css">
+    <link rel="stylesheet" href="../footer/footer.css">
+
+    <!-- Core Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://js.instamojo.com/v1/checkout.js"></script>
+
+    <!-- Header Load Script -->
+    <script src="../Header/header.js" defer></script>
+
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <main class="dm-chk-main-wrapper">
+
+        <!-- Left Section: Address & Payment Info -->
+        <div class="dm-chk-left-container">
+
+            <!-- Shipping Details Box Form -->
+            <section class="dm-chk-section-box">
+                <h2 class="dm-chk-section-title">Shipping & Delivery Details</h2>
+                <p class="dm-chk-section-desc" id="address-section-desc">Please enter your correct address details to
+                    process shipping.</p>
+
+                <!-- Display Area for Existing Users -->
+                <div id="saved-address-view" class="dm-chk-saved-address-view" style="display: none;">
+                    <div class="dm-chk-saved-address-card">
+                        <span class="dm-chk-address-badge" id="lbl-addr-type">Home</span>
+                        <h4 id="lbl-receiver-name" class="dm-chk-lbl-receiver-name"></h4>
+                        <p id="lbl-full-address" class="dm-chk-lbl-full-address"></p>
+                        <p id="lbl-receiver-phone" class="dm-chk-lbl-receiver-phone"></p>
+                        <button type="button" class="dm-chk-change-addr-btn" onclick="forceShowAddressForm()">
+                            <i class="fa-solid fa-pen-to-square"></i> Use a different address
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Form Block for First-Time Users -->
+                <form id="billing-form-fields" style="display: none;">
+                    <div class="dm-chk-form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="full-name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="dm-chk-form-row-grid">
+                        <div class="dm-chk-form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="phone-number" placeholder="10-digit mobile number" required>
+                        </div>
+                        <div class="dm-chk-form-group">
+                            <label>Email Address *</label>
+                            <input type="email" id="email-address" placeholder="yourname@gmail.com" required>
+                        </div>
+                    </div>
+
+                    <div class="dm-chk-form-group">
+                        <label>Address Line 1 (Flat, House no., Building, Company) *</label>
+                        <input type="text" id="address-line1" placeholder="Flat / House details" required>
+                    </div>
+
+                    <div class="dm-chk-form-group">
+                        <label>Address Line 2 (Area, Street, Sector, Village) *</label>
+                        <input type="text" id="address-line2" placeholder="Area / Colony path" required>
+                    </div>
+
+                    <div class="dm-chk-form-row-grid">
+                        <div class="dm-chk-form-group">
+                            <label>City *</label>
+                            <input type="text" id="city-name" placeholder="City name" required>
+                        </div>
+                        <div class="dm-chk-form-group">
+                            <label>State *</label>
+                            <input type="text" id="state-name" placeholder="State name" required>
+                        </div>
+                    </div>
+
+                    <div class="dm-chk-form-group" style="margin-bottom: 0;">
+                        <label>Pincode *</label>
+                        <input type="text" id="pincode" placeholder="6-digit PIN code" required>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Payment Selection Box -->
+            <section class="dm-chk-section-box">
+                <h2 class="dm-chk-section-title">Choose Payment Method</h2>
+                <p class="dm-chk-section-desc">Select an option below to securely process and fulfill your order.</p>
+
+                <div class="dm-chk-payment-methods-grid">
+                    <div class="dm-chk-method-card dm-chk-selected" id="opt-online"
+                        onclick="selectPaymentRoute('online')">
+                        <div class="dm-chk-custom-radio"></div>
+                        <div class="dm-chk-method-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                                <line x1="1" y1="10" x2="23" y2="10"></line>
+                            </svg>
+                        </div>
+                        <div class="dm-chk-method-details">
+                            <h4>Pay Online (Instant Verification)</h4>
+                            <p>Pay smoothly using UPI, Cards, NetBanking, or Wallets via Instamojo</p>
+                        </div>
+                    </div>
+
+                    <div class="dm-chk-method-card" id="opt-cod" onclick="selectPaymentRoute('cod')">
+                        <div class="dm-chk-custom-radio"></div>
+                        <div class="dm-chk-method-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <div class="dm-chk-method-details">
+                            <h4>Cash on Delivery (COD)</h4>
+                            <p>Pay with cash direct at your doorstep upon handling shipment (+₹83 Shipping)</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Sidebar Section: Billing Invoice Card -->
+        <aside class="dm-chk-summary-sidebar-card">
+            <h3 class="dm-chk-sidebar-title">Order Summary</h3>
+
+            <div class="dm-chk-checkout-items-list" id="checkoutItemsTarget"></div>
+
+            <div class="dm-chk-invoice-breakdown">
+                <div class="dm-chk-invoice-row">
+                    <span>MRP (Incl. of all taxes):</span>
+                    <div class="dm-chk-price-group">
+                        <span id="cutMrpCost" class="dm-chk-cut-price-mrp" style="display: none;">₹0</span>
+                        <span id="subtotalCost" class="dm-chk-subtotal-value">₹0</span>
+                    </div>
+                </div>
+                <div class="dm-chk-invoice-row" id="discountRow" style="display: none;">
+                    <span>Product Discount:</span>
+                    <span id="discountCost" class="dm-chk-discount-green">-₹0</span>
+                </div>
+                <div class="dm-chk-invoice-row">
+                    <span>Shipping Handling:</span>
+                    <span id="shippingHandlingCost" class="dm-chk-shipping-value">FREE</span>
+                </div>
+                <div class="dm-chk-invoice-row dm-chk-total-row">
+                    <span>Order Total:</span>
+                    <span class="dm-chk-total-price" id="finalTotalCost">₹0</span>
+                </div>
+            </div>
+
+            <button class="dm-chk-place-order-btn" onclick="executeSelectedOrderPayment()">
+                <i class="fa-solid fa-lock"></i> Complete My Order
+            </button>
+
+            <a href="../index.html" class="dm-chk-return-link">
+                <i class="fa-solid fa-chevron-left"></i> Return & Edit Cart
+            </a>
+        </aside>
+
+    </main>
+
+    <footer id="global-footer"></footer>
+
+    <!-- Main Checkout Logic -->
+    <script src="../Js_files/Checkout_012.js"></script>
+</body>
+
+</html>
