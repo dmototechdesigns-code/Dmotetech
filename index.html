@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DMotoTech — Premium Windshields & Touring Accessories for Indian Motorcycles">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Rajdhani:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png"
+        href="https://dmototech.co.in/wp-content/uploads/2026/01/cropped-dmototech-logo-1png.png">
+    <link rel="stylesheet" href="./Header/Header.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Elfsight Instagram Feed | DMotoTech -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        oswald: ['Oswald', 'sans-serif'],
+                        rajdhani: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: { 900: '#050505', 800: '#0A0A0A', 700: '#111111', 600: '#1a1a1a' }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <title>DMotoTech — Premium Windshields & Touring Accessories</title>
+
+</head>
+
+<body>
+
+    <div id="global-header"></div>
+
+    <!-- Home Page Section  -->
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <p class="anim-slide d2 hero-tagline">
+                Premium Windshields & Touring Accessories
+            </p>
+
+            <h1 class="anim-slide d3 hero-heading">
+                For Your<br class="sm-hide"> Motorcycles
+            </h1>
+
+            <div class="quote-line"></div>
+
+            <p class="anim-slide d4 hero-quote">
+                "Live your Passion, Ride your Attitude" — DMotoTech
+            </p>
+
+            <div class="anim-slide d5 hero-buttons">
+                <button class="btn-primary">
+                    <iconify-icon icon="ph:motorcycle" style="font-size:16px;"></iconify-icon>
+                    X Pulse 210 Windshield
+                </button>
+                <button class="btn-outline">
+                    <iconify-icon icon="ph:mountains" style="font-size:16px;"></iconify-icon>
+                    Himalayan 450 Windshield
+                </button>
+                <button class="btn-ghost">
+                    <iconify-icon icon="ph:funnel" style="font-size:16px;"></iconify-icon>
+                    Shop by Motorcycle
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-bottom-fade"></div>
+
+        <!-- Simple down arrow instead of mouse -->
+        <div class="scroll-hint">
+            <iconify-icon icon="ph:caret-down"></iconify-icon>
+        </div>
+    </section>
+
+
+    <!-- ===== MARQUEE ===== -->
+    <div class="py-4 border-y border-white/5 overflow-hidden">
+        <div class="flex whitespace-nowrap marquee-track">
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Windshields</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Touring Screens</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Phone Mounts</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">LED Lights</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Luggage Systems</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Hand Guards</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Windshields</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Touring Screens</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Phone Mounts</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">LED Lights</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Luggage Systems</span>
+            <span class="text-orange-500/40 mx-2">✦</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-neutral-600 mx-8">Hand Guards</span>
+        </div>
+    </div>
+
+    <!-- ===== BEST SELLERS ===== -->
+    <section class="dmt-bs-section">
+        <div class="dmt-bs-header">
+            <h2 class="dmt-bs-title">Our Best Sellers</h2>
+        </div>
+        <div class="dmt-bs-grid">
+            <div class="dmt-bs-card">
+                <div class="dmt-bs-img-wrap">
+                    <span class="dmt-bs-badge">Sale</span>
+                    <img src="https://dmototech.co.in/wp-content/uploads/2026/03/xpsws-11-600x749.webp"
+                        alt="Hero XPulse 210" class="dmt-bs-img">
+                </div>
+                <div class="dmt-bs-content">
+                    <div class="dmt-bs-category">Windshields</div>
+                    <h3 class="dmt-bs-name">Hero XPulse 210 High Windshield</h3>
+                    <div class="dmt-bs-rating">★★★★☆ <span>(24)</span></div>
+                    <div class="dmt-bs-price-row">
+                        <span class="dmt-bs-price">₹1,499 - ₹1,799</span>
+                        <span class="dmt-bs-tax">(Incl. Tax)</span>
+                    </div>
+                    <button class="dmt-bs-btn" onclick="showToast('Select options clicked')">
+                        <i class="fa-solid fa-sliders"></i> Select Options
+                    </button>
+                </div>
+            </div>
+            <div class="dmt-bs-card">
+                <div class="dmt-bs-img-wrap">
+                    <span class="dmt-bs-badge">Sale</span>
+                    <img src="https://dmototech.co.in/wp-content/uploads/2026/07/hadb-2-510x510.png"
+                        alt="Himalayan 450 Bracket" class="dmt-bs-img">
+                </div>
+                <div class="dmt-bs-content">
+                    <div class="dmt-bs-category">Mounts & Brackets</div>
+                    <h3 class="dmt-bs-name">Himalayan 450 Windshield Adjusting Bracket</h3>
+                    <div class="dmt-bs-rating">★★★★★ <span>(45)</span></div>
+                    <div class="dmt-bs-price-row">
+                        <span class="dmt-bs-price">₹899</span>
+                        <span class="dmt-bs-old-price">₹1,200</span>
+                        <span class="dmt-bs-tax">(Incl. Tax)</span>
+                    </div>
+                    <button class="dmt-bs-btn dmt-bs-btn-primary" onclick="showToast('Added to Cart!')">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            <div class="dmt-bs-card">
+                <div class="dmt-bs-img-wrap">
+                    <img src="https://dmototech.co.in/wp-content/uploads/2026/03/chrome-wd-1-600x822.webp"
+                        alt="Wind Deflector" class="dmt-bs-img">
+                </div>
+                <div class="dmt-bs-content">
+                    <div class="dmt-bs-category">Accessories</div>
+                    <h3 class="dmt-bs-name">Motorcycle Wind Deflector (Black/Chrome)</h3>
+                    <div class="dmt-bs-rating">★★★☆☆ <span>(12)</span></div>
+                    <div class="dmt-bs-price-row">
+                        <span class="dmt-bs-price">₹649</span>
+                        <span class="dmt-bs-tax">(Incl. Tax)</span>
+                    </div>
+                    <button class="dmt-bs-btn" onclick="showToast('Select options clicked')">
+                        <i class="fa-solid fa-sliders"></i> Select Options
+                    </button>
+                </div>
+            </div>
+            <div class="dmt-bs-card">
+                <div class="dmt-bs-img-wrap">
+                    <span class="dmt-bs-badge">Sale</span>
+                    <img src="https://dmototech.co.in/wp-content/uploads/2025/12/Gemini_Generated_Image_3z1k2m3z1k2m3z1k-600x822.png"
+                        alt="Top Box" class="dmt-bs-img">
+                </div>
+                <div class="dmt-bs-content">
+                    <div class="dmt-bs-category">Luggage</div>
+                    <h3 class="dmt-bs-name">Top Box for Royal Enfield & Universal</h3>
+                    <div class="dmt-bs-rating">★★★★☆ <span>(38)</span></div>
+                    <div class="dmt-bs-price-row">
+                        <span class="dmt-bs-price">₹2,499</span>
+                        <span class="dmt-bs-old-price">₹3,000</span>
+                        <span class="dmt-bs-tax">(Incl. Tax)</span>
+                    </div>
+                    <button class="dmt-bs-btn dmt-bs-btn-primary" onclick="showToast('Added to Cart!')">
+                        <i class="fa-solid fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SHOP BY WINDSHIELD ===== -->
+    <section class="dmt-ws-section">
+        <div class="dmt-ws-container">
+
+            <div class="dmt-ws-grid">
+                <div class="dmt-ws-card" onclick="showToast('Exploring Himalayan 450 Windshields')">
+                    <img src="https://dmototech.co.in/wp-content/uploads/2025/12/Front-View.webp" alt="Himalayan 450"
+                        class="dmt-ws-bg-img">
+                    <div class="dmt-ws-content">
+                        <span class="dmt-ws-brand">Royal Enfield</span>
+                        <h3 class="dmt-ws-model">Himalayan 450</h3>
+                        <button class="dmt-ws-btn"><i class="fa-solid fa-wind"></i> Windshield</button>
+                    </div>
+                </div>
+                <div class="dmt-ws-card" onclick="showToast('Exploring XPulse 210 Windshields')">
+                    <img src="https://dmototech.co.in/wp-content/uploads/2026/03/xpsws-11-600x749.webp" alt="XPulse 210"
+                        class="dmt-ws-bg-img">
+                    <div class="dmt-ws-content">
+                        <span class="dmt-ws-brand">Hero</span>
+                        <h3 class="dmt-ws-model">XPulse 210</h3>
+                        <button class="dmt-ws-btn"><i class="fa-solid fa-wind"></i> Windshield</button>
+                    </div>
+                </div>
+                <div class="dmt-ws-card" onclick="showToast('Exploring Hunter 350 Windshields')">
+                    <img src="https://dmototech.co.in/wp-content/uploads/2026/03/chrome-wd-1-600x822.webp"
+                        alt="Hunter 350" class="dmt-ws-bg-img">
+                    <div class="dmt-ws-content">
+                        <span class="dmt-ws-brand">Royal Enfield</span>
+                        <h3 class="dmt-ws-model">Hunter 350</h3>
+                        <button class="dmt-ws-btn"><i class="fa-solid fa-wind"></i> Windshield</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHY DOCHAKI ===== -->
+    <section class="why-dochaki section-padding">
+        <div class="section-watermark">WHY</div>
+
+        <div class="text-center reveal-hidden" id="whyReveal">
+            <span class="badge badge-orange">
+                <i class="fa-solid fa-shield-halved" style="font-size:13px;"></i>
+                Why Choose Us
+            </span>
+            <h2 class="section-title">Why <span class="gradient-text">DMotoTech</span></h2>
+            <p class="section-subtitle">Built by riders, for riders — every product engineered with precision.</p>
+        </div>
+
+        <div class="why-cards-grid">
+            <div class="why-card reveal-hidden">
+                <span class="why-card-num">01</span>
+                <div class="why-card-icon-wrap">🛡️</div>
+                <h3>Scratch Resistant</h3>
+                <p>Premium acrylic with hard-coat finish that survives highway debris and daily wear.</p>
+            </div>
+            <div class="why-card reveal-hidden">
+                <span class="why-card-num">02</span>
+                <div class="why-card-icon-wrap">🔧</div>
+                <h3>Perfect Fit</h3>
+                <p>Laser-measured for exact model compatibility. No drilling, no modifications needed.</p>
+            </div>
+            <div class="why-card reveal-hidden">
+                <span class="why-card-num">03</span>
+                <div class="why-card-icon-wrap">💨</div>
+                <h3>Aero Tested</h3>
+                <p>Wind-tunnel inspired profiles reduce buffeting and rider fatigue on long tours.</p>
+            </div>
+            <div class="why-card reveal-hidden">
+                <span class="why-card-num">04</span>
+                <div class="why-card-icon-wrap">📦</div>
+                <h3>Fast Shipping</h3>
+                <p>Dispatched within 24 hours. Pan-India delivery with secure packaging.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VIDEO CAROUSEL ===== -->
+    <section class="video-section section-padding">
+        <div class="section-watermark">VIDEO</div>
+
+        <div class="text-center reveal-hidden" id="videoReveal">
+            <span class="badge badge-orange">
+                <i class="fa-solid fa-play" style="font-size:11px;"></i>
+                Watch & Learn
+            </span>
+            <h2 class="section-title">Installation <span class="gradient-text">Videos</span></h2>
+            <p class="section-subtitle">See how easy it is to upgrade your ride with DMotoTech accessories.</p>
+        </div>
+
+        <div class="video-carousel-wrap reveal-hidden">
+            <div class="video-carousel">
+                <div class="carousel-arrow" onclick="slideVideo(-1)">
+                    <span class="iconify text-xl" data-icon="mdi:chevron-left"></span>
+                </div>
+                <div class="video-track">
+                    <div class="video-slides" id="videoSlides">
+                        <div class="video-slide">
+                            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1000&h=562&fit=crop"
+                                alt="Install Video 1">
+                            <div class="video-overlay">
+                                <div class="play-btn-circle" onclick="showToast('Video playing...')">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </div>
+                                <span class="video-slide-label">Himalayan 450 Windshield Install</span>
+                            </div>
+                        </div>
+                        <div class="video-slide">
+                            <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=1000&h=562&fit=crop"
+                                alt="Install Video 2">
+                            <div class="video-overlay">
+                                <div class="play-btn-circle" onclick="showToast('Video playing...')">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </div>
+                                <span class="video-slide-label">XPulse 210 Full Setup Guide</span>
+                            </div>
+                        </div>
+                        <div class="video-slide">
+                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=1000&h=562&fit=crop"
+                                alt="Install Video 3">
+                            <div class="video-overlay">
+                                <div class="play-btn-circle" onclick="showToast('Video playing...')">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+                                        <polygon points="5,3 19,12 5,21" />
+                                    </svg>
+                                </div>
+                                <span class="video-slide-label">Wind Deflector Quick Fit</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-arrow" onclick="slideVideo(1)">
+                    <span class="iconify text-xl" data-icon="mdi:chevron-right"></span>
+                </div>
+            </div>
+            <div class="carousel-dots" id="videoDots"></div>
+        </div>
+    </section>
+
+    <!-- ===== INSTAGRAM FEED — ELFSIGHT ===== -->
+    <section class="insta-section section-padding">
+        <div class="section-watermark">INSTAGRAM</div>
+
+        <div class="text-center reveal-hidden" id="instaReveal">
+            <span class="badge badge-purple">
+                <i class="fa-brands fa-instagram" style="font-size:14px;"></i>
+                Follow Us
+            </span>
+            <h2 class="section-title"><span class="gradient-text-purple">Ride With Us</span> On Instagram</h2>
+            <p class="section-subtitle">Real riders, real installations, real roads — follow @dmototech for the
+                latest
+                builds and touring updates.</p>
+        </div>
+
+        <!-- ELFSIGHT WIDGET -->
+        <div style="max-width:1200px; margin:0 auto 40px;" class="reveal-hidden">
+            <div class="elfsight-app-f65be4a7-9a0e-459a-af10-e65f8a255587" data-elfsight-app-lazy></div>
+        </div>
+
+        <!-- CTA -->
+        <div class="text-center reveal-hidden">
+            <div class="insta-btn-wrap">
+                <a href="https://www.instagram.com/dmototech/" target="_blank" rel="noopener" class="insta-cta-btn">
+                    <i class="fa-brands fa-instagram" style="font-size:1.2rem;"></i>
+                    Follow @dmototech
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Workshop is here  -->
+
+
+
+    <!-- ══════ HERO ══════ -->
+    <section class="atelier-hero" aria-label="Manufactured in Our Workshop">
+        <div class="atelier-hero__narrative reveal-left">
+            <div class="narrative-eyebrow">
+                <span class="narrative-eyebrow__line"></span>
+                <span class="narrative-eyebrow__text">Doshati Workshop</span>
+            </div>
+
+            <h1 class="narrative-headline">
+                Manufactured<br>in Our<br><em>Workshop</em><br>
+                <span class="narrative-headline__year">2021</span>
+            </h1>
+
+            <p class="narrative-body">
+                We are an Indian manufacturer focused on travel essentials. Every product is developed, rigorously
+                tested, and continuously refined based on real customer feedback.
+            </p>
+
+            <div class="narrative-pills">
+                <span class="narrative-pill"><i class="fas fa-flask"></i> Lab Tested</span>
+                <span class="narrative-pill"><i class="fas fa-rotate"></i> Iterative Design</span>
+                <span class="narrative-pill"><i class="fas fa-comments"></i> Customer Driven</span>
+                <span class="narrative-pill"><i class="fas fa-industry"></i> Small Batch</span>
+            </div>
+
+            <div class="narrative-actions">
+                <button class="cta-fil" aria-label="Explore workshop">
+                    <span>Explore Workshop</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="cta-ghost" aria-label="Watch our story">
+                    <i class="fas fa-play"></i>
+                    <span>Our Story</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="atelier-hero__canvas">
+            <span class="canvas-watermark">DOSHA<br>TI</span>
+            <div class="canvas-dot canvas-dot--a"></div>
+            <div class="canvas-dot canvas-dot--b"></div>
+            <div class="canvas-dot canvas-dot--c"></div>
+
+            <div class="canvas-product reveal-right">
+                <div class="canvas-product__frame" id="productFrame">
+                    <img src="https://z-cdn-media.chatglm.cn/files/3db09206-97bf-40cd-9485-04a7bb00b643.png?auth_key=1886122397-1c701618b4d54cc8a70b3d7fc04cfc8c-0-3b72672878058875afd08ad08ea782f1"
+                        alt="Dark brown plastic seat manufactured by Doshati workshop" loading="eager">
+                    <div class="canvas-product__stripes"></div>
+                </div>
+
+                <div class="canvas-badge">
+                    <div class="canvas-badge__icon-ring">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="canvas-badge__info">
+                        <small>Active Since</small>
+                        <strong>2021</strong>
+                    </div>
+                </div>
+
+                <div class="canvas-stat-chip">
+                    <div class="canvas-stat-chip__num">100%</div>
+                    <div class="canvas-stat-chip__label">Workshop Made</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════ BENTO METRICS ══════ -->
+    <div class="bento-metrics">
+        <div class="bento-metrics__grid">
+            <div class="bento-tile bento-tile--featured reveal-up">
+                <div>
+                    <div class="bento-tile__icon"><i class="fas fa-cogs"></i></div>
+                    <div class="bento-tile__num" data-count="5000" data-suffix="+">0</div>
+                </div>
+                <div class="bento-tile__desc">Units crafted in our workshop with hands-on quality control at every
+                    stage
+                </div>
+            </div>
+            <div class="bento-tile reveal-up" style="transition-delay: 0.1s;">
+                <div class="bento-tile__icon"><i class="fas fa-star"></i></div>
+                <div class="bento-tile__num" data-count="4.8" data-decimal="true">0</div>
+                <div class="bento-tile__desc">Average Customer Rating</div>
+            </div>
+            <div class="bento-tile reveal-up" style="transition-delay: 0.15s;">
+                <div class="bento-tile__icon"><i class="fas fa-redo-alt"></i></div>
+                <div class="bento-tile__num" data-count="12" data-suffix="">0</div>
+                <div class="bento-tile__desc">Design Iterations</div>
+            </div>
+            <div class="bento-tile reveal-up" style="transition-delay: 0.2s;">
+                <div class="bento-tile__icon"><i class="fas fa-users"></i></div>
+                <div class="bento-tile__num" data-count="2500" data-suffix="+">0</div>
+                <div class="bento-tile__desc">Happy Customers</div>
+            </div>
+            <div class="bento-tile reveal-up" style="transition-delay: 0.25s;">
+                <div class="bento-tile__icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="bento-tile__num" data-count="18" data-suffix="">0</div>
+                <div class="bento-tile__desc">States Served</div>
+            </div>
+            <div class="bento-tile reveal-up" style="transition-delay: 0.3s;">
+                <div class="bento-tile__icon"><i class="fas fa-hand-holding-heart"></i></div>
+                <div class="bento-tile__num" data-count="98" data-suffix="%">0</div>
+                <div class="bento-tile__desc">Satisfaction Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════ PROCESS CORRIDOR ══════ -->
+    <section class="process-corridor" aria-label="Manufacturing process">
+        <div class="corridor-header">
+            <div>
+                <div class="corridor-header__label">How We Build</div>
+                <h2 class="corridor-header__title">From raw idea to finished product</h2>
+            </div>
+            <div class="corridor-header__hint">
+                Scroll to explore <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+
+        <div class="corridor-track" role="list">
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">01</span>
+                <div class="phase-card__icon-box"><i class="fas fa-lightbulb"></i></div>
+                <h3 class="phase-card__name">Identify the Problem</h3>
+                <p class="phase-card__detail">We start by listening — real conversations with travelers to uncover
+                    genuine pain points that need solving.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">02</span>
+                <div class="phase-card__icon-box"><i class="fas fa-pencil-ruler"></i></div>
+                <h3 class="phase-card__name">Design the Solution</h3>
+                <p class="phase-card__detail">Sketches become prototypes. We explore materials, ergonomics, and
+                    portability before committing.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">03</span>
+                <div class="phase-card__icon-box"><i class="fas fa-vial"></i></div>
+                <h3 class="phase-card__name">Stress-Test Rigorously</h3>
+                <p class="phase-card__detail">Weight limits, drop tests, weather exposure — every prototype faces
+                    harsh
+                    conditions in our lab.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">04</span>
+                <div class="phase-card__icon-box"><i class="fas fa-comments"></i></div>
+                <h3 class="phase-card__name">Gather Real Feedback</h3>
+                <p class="phase-card__detail">Beta units go to real travelers. Their honest feedback directly shapes
+                    the
+                    next iteration.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">05</span>
+                <div class="phase-card__icon-box"><i class="fas fa-sync-alt"></i></div>
+                <h3 class="phase-card__name">Refine & Repeat</h3>
+                <p class="phase-card__detail">Tweak materials, adjust dimensions, improve feel. This loop runs until
+                    the
+                    product feels effortless.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+            <article class="phase-card" role="listitem">
+                <span class="phase-card__step">06</span>
+                <div class="phase-card__icon-box"><i class="fas fa-box-open"></i></div>
+                <h3 class="phase-card__name">Small-Batch Ship</h3>
+                <p class="phase-card__detail">Controlled production runs ensure every unit meets the same standard.
+                    No
+                    mass-production shortcuts.</p>
+                <div class="phase-card__arrow"><i class="fas fa-arrow-right"></i></div>
+            </article>
+        </div>
+    </section>
+
+
+    <script>
+        /* ── 滚动揭示 ── */
+        ['.reveal-up', '.reveal-left', '.reveal-right'].forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => {
+                const obs = new IntersectionObserver(entries => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+                    });
+                }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+                obs.observe(el);
+            });
+        });
+
+        /* ── 数字滚动 ── */
+        const nums = document.querySelectorAll('.bento-tile__num[data-count]');
+        let numsFired = false;
+        const numsObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !numsFired) {
+                    numsFired = true;
+                    nums.forEach(el => {
+                        const target = parseFloat(el.dataset.count);
+                        const suffix = el.dataset.suffix || '';
+                        const isDec = el.dataset.decimal === 'true';
+                        const dur = 1600, start = performance.now();
+                        (function tick(now) {
+                            const p = Math.min((now - start) / dur, 1);
+                            const ease = 1 - Math.pow(2, -10 * p);
+                            const val = target * ease;
+                            el.textContent = (isDec ? val.toFixed(1) : Math.floor(val).toLocaleString()) + suffix;
+                            if (p < 1) requestAnimationFrame(tick);
+                            else el.textContent = (isDec ? target.toFixed(1) : target.toLocaleString()) + suffix;
+                        })(start);
+                    });
+                }
+            });
+        }, { threshold: 0.25 });
+        const bentoGrid = document.querySelector('.bento-metrics__grid');
+        if (bentoGrid) numsObs.observe(bentoGrid);
+
+        /* ── 产品图 3D 视差 ── */
+        const frame = document.getElementById('productFrame');
+        if (frame && window.matchMedia('(min-width: 768px)').matches) {
+            const canvas = document.querySelector('.atelier-hero__canvas');
+            canvas.addEventListener('mousemove', e => {
+                const rect = canvas.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 12;
+                frame.style.transition = 'none';
+                frame.style.transform = 'perspective(900px) rotateY(' + x + 'deg) rotateX(' + (-y) + 'deg)';
+            });
+            canvas.addEventListener('mouseleave', () => {
+                frame.style.transition = 'transform 0.6s cubic-bezier(0.4,0,0.2,1)';
+                frame.style.transform = 'perspective(900px) rotateY(0) rotateX(0)';
+            });
+        }
+
+        /* ── 横滚拖拽 ── */
+        const track = document.querySelector('.corridor-track');
+        if (track) {
+            let isDown = false, startX, scrollLeft;
+            track.addEventListener('mousedown', e => {
+                isDown = true; track.style.cursor = 'grabbing';
+                startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
+            });
+            track.addEventListener('mouseleave', () => { isDown = false; track.style.cursor = ''; });
+            track.addEventListener('mouseup', () => { isDown = false; track.style.cursor = ''; });
+            track.addEventListener('mousemove', e => {
+                if (!isDown) return; e.preventDefault();
+                track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
+            });
+        }
+
+        /* ── Phase 卡片依次进入 ── */
+        document.querySelectorAll('.phase-card').forEach((card, i) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.5s ' + (i * 0.1) + 's, transform 0.5s ' + (i * 0.1) + 's';
+            const obs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; obs.unobserve(card); }
+                });
+            }, { threshold: 0.1 });
+            obs.observe(card);
+        });
+    </script>
+
+
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== FONT AWESOME (for icons) ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+
+        // Elfsight branding force remove
+        function killElfsightBranding() {
+            const widget = document.querySelector('.elfsight-app-f65be4a7-9a0e-459a-af10-e65f8a255587');
+            if (!widget) return;
+            widget.querySelectorAll('a').forEach(a => {
+                if (a.href && a.href.includes('elfsight')) a.remove();
+            });
+            widget.querySelectorAll('*').forEach(el => {
+                if (el.textContent && el.textContent.includes('Free Instagram Feed Widget') && el.children.length === 0) {
+                    el.closest('a, div')?.remove();
+                }
+            });
+        }
+        // Multiple attempts kyunki widget async load hota hai
+        setTimeout(killElfsightBranding, 1500);
+        setTimeout(killElfsightBranding, 3000);
+        setTimeout(killElfsightBranding, 5000);
+        // ===== TOAST =====
+        let toastTimer;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerHTML = '<span style="color:#f97316;">✓</span> ' + msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        // ===== HERO SLIDER =====
+        const heroTrack = document.getElementById('heroTrack');
+        const heroDots = document.getElementById('heroDots');
+        const heroSlides = heroTrack ? heroTrack.children.length : 0;
+        let heroIndex = 0;
+
+        if (heroDots) {
+            for (let i = 0; i < heroSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToHero(i);
+                heroDots.appendChild(dot);
+            }
+        }
+
+        function goToHero(i) {
+            heroIndex = i;
+            const slide = heroTrack.children[0];
+            const gap = 12;
+            const w = slide.offsetWidth + gap;
+            heroTrack.style.transform = `translateX(-${i * w}px)`;
+            document.querySelectorAll('#heroDots .slide-dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === i);
+            });
+        }
+
+        function slideHero(dir) {
+            let next = heroIndex + dir;
+            if (next < 0) next = heroSlides - 1;
+            if (next >= heroSlides) next = 0;
+            goToHero(next);
+        }
+
+        // Auto-slide hero
+        setInterval(() => slideHero(1), 4000);
+
+        // ===== VIDEO CAROUSEL =====
+        const videoSlides = document.getElementById('videoSlides');
+        const videoDots = document.getElementById('videoDots');
+        const videoCount = videoSlides ? videoSlides.children.length : 0;
+        let videoIndex = 0;
+
+        if (videoDots) {
+            for (let i = 0; i < videoCount; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = () => goToVideo(i);
+                videoDots.appendChild(dot);
+            }
+        }
+
+        function goToVideo(i) {
+            videoIndex = i;
+            videoSlides.style.transform = `translateX(-${i * 100}%)`;
+            document.querySelectorAll('#videoDots .carousel-dot').forEach((d, idx) => {
+                d.classList.toggle('active', idx === i);
+            });
+        }
+
+        function slideVideo(dir) {
+            let next = videoIndex + dir;
+            if (next < 0) next = videoCount - 1;
+            if (next >= videoCount) next = 0;
+            goToVideo(next);
+        }
+
+        // ===== FADE-UP OBSERVER =====
+        const fadeObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+        // ===== REVEAL OBSERVER =====
+        function setupReveal(sectionId) {
+            const el = document.getElementById(sectionId);
+            if (!el) return;
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const siblings = entry.target.parentElement.querySelectorAll('.reveal-hidden');
+                        siblings.forEach((s, i) => {
+                            setTimeout(() => s.classList.add('reveal-visible'), i * 150);
+                        });
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            obs.observe(el);
+        }
+
+        setupReveal('whyReveal');
+        setupReveal('videoReveal');
+        setupReveal('instaReveal');
+
+        // ===== WHY CARD MOUSE TRACKING =====
+        document.querySelectorAll('.why-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+                card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+            });
+        });
+
+        // ===== LUCIDE ICONS =====
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    </script>
+    <script src="./Js_files/Header.js"></script>
+    <script>
+        async function loadGlobalHeader() {
+            const container = document.getElementById('global-header');
+            if (!container) return;
+            try {
+                const response = await fetch('./Header/Header.html');
+                if (!response.ok) throw new Error('Header file not found');
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                container.innerHTML = doc.body ? doc.body.innerHTML : html;
+                container.querySelectorAll('a[href^="../"]').forEach(a => {
+                    a.href = a.getAttribute('href').replace(/^\.\./, '');
+                });
+                if (typeof initSupabaseAuth === 'function') {
+                    initSupabaseAuth();
+                }
+            } catch (error) {
+                console.error('Header load failed:', error);
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGlobalHeader);
+        } else {
+            loadGlobalHeader();
+        }
+    </script>
+    <script>
+        // Set a reliable --vh custom property for mobile viewport quirks
+        (function () {
+            const setVh = () => document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+            setVh();
+            window.addEventListener('resize', setVh);
+        })();
+    </script>
+</body>
+
+</html>
