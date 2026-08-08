@@ -135,10 +135,7 @@ function renderGridUI(items, context) {
                 <div class="dks-shp-img-container">
                     <img src="${item.image_url}" alt="${item.name}" onerror="this.src='https://dmototech.co.in/wp-content/uploads/2026/01/G-310-GS.webp'">
                 </div>
-                <div class="dks-shp-card-content">
-                    <h3 class="dks-shp-prod-name">${item.name}</h3>
-                    <button class="dks-shp-buy-btn" style="margin-top: auto;">Explore Details</button>
-                </div>
+
             </div>
         `;
         grid.innerHTML += cardHTML;
