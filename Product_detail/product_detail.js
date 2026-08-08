@@ -242,7 +242,7 @@ function loadHeaderFooter() {
     const headerPromise = fetch('../Header/Header.html').then(res => res.text()).then(html => {
         document.getElementById('global-header').innerHTML = html;
     });
-    const footerPromise = fetch('../Footer/footer.html').then(res => res.text()).then(html => {
+    const footerPromise = fetch('../footer/footer.html').then(res => res.text()).then(html => {
         document.getElementById('global-footer').innerHTML = html;
     });
     return Promise.all([headerPromise, footerPromise]);
