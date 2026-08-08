@@ -98,7 +98,7 @@
 
         async function loadFooter() {
             try {
-                const response = await fetch("../Footer/footer.html");
+                const response = await fetch("../footer/footer.html");
                 const data = await response.text();
                 document.getElementById("global-footer").innerHTML = data;
             } catch (err) {
