@@ -37,6 +37,21 @@ const ProductView = {
             return [String(value).trim()];
         }
 
+        function getBoltSizesInfo(item) {
+            const sizes = normalizeFeatureItems(item?.bolt_sizes || item?.sizes || []);
+            const filteredSizes = sizes.map(size => String(size).trim()).filter(Boolean);
+            const totalCount = item?.total_bolt_sizes ?? item?.totalBoltSizes ?? item?.total_bolt_size ?? item?.totalSizes;
+            const normalizedCount = Number(String(totalCount ?? '').replace(/[^0-9]/g, ''));
+
+            if (!filteredSizes.length) return { sizes: [], displayText: '' };
+
+            const displayText = Number.isFinite(normalizedCount) && normalizedCount > 0
+                ? `Available in ${normalizedCount} Sizes ${filteredSizes.join(', ')}`
+                : filteredSizes.join(', ');
+
+            return { sizes: filteredSizes, displayText };
+        }
+
         if (heroFeatures) {
             heroFeatures.innerHTML = '';
             const arr = normalizeFeatureItems(product.keyfeatures_1 || product.keyfeatures || []);
@@ -58,19 +73,26 @@ const ProductView = {
         }
 
         if (boltSelect) {
-            boltSelect.innerHTML = '<option value="">Choose an option</option>';
-            const sizes = product.bolt_sizes || product.sizes || [];
-            if (Array.isArray(sizes) && sizes.length > 0) {
-                sizes.forEach(s => {
-                    const opt = document.createElement('option');
-                    opt.value = s;
-                    opt.innerText = s;
-                    boltSelect.appendChild(opt);
-                });
-                document.querySelector('.dmt-js-bolt-row')?.classList.remove('hidden');
-            } else {
-                document.querySelector('.dmt-js-bolt-row')?.classList.add('hidden');
+            const { sizes, displayText } = getBoltSizesInfo(product);
+            const boltRow = document.querySelector('.dmt-js-bolt-row');
+            const boltLabel = document.querySelector('.dmt-js-table-bolt-sizes');
+
+            if (!sizes.length) {
+                boltSelect.innerHTML = '';
+                if (boltRow) boltRow.style.display = 'none';
+                if (boltLabel) boltLabel.innerText = 'N/A';
+                return;
             }
+
+            boltSelect.innerHTML = '<option value="">Choose an option</option>';
+            sizes.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s;
+                opt.innerText = s;
+                boltSelect.appendChild(opt);
+            });
+            if (boltRow) boltRow.style.display = '';
+            if (boltLabel) boltLabel.innerText = displayText;
         }
     },
     renderReviews(reviews) {

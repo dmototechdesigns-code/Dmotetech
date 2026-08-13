@@ -25,6 +25,21 @@ function normalizeFeatureItems(value) {
     return [String(value).trim()];
 }
 
+function getBoltSizesInfo(product) {
+    const sizes = normalizeFeatureItems(product?.bolt_sizes || product?.sizes || []);
+    const filteredSizes = sizes.map(size => String(size).trim()).filter(Boolean);
+    const totalCount = product?.total_bolt_sizes ?? product?.totalBoltSizes ?? product?.total_bolt_size ?? product?.totalSizes;
+    const normalizedCount = Number(String(totalCount ?? '').replace(/[^0-9]/g, ''));
+
+    if (!filteredSizes.length) return { sizes: [], displayText: '' };
+
+    const displayText = Number.isFinite(normalizedCount) && normalizedCount > 0
+        ? `Available in ${normalizedCount} Sizes ${filteredSizes.join(', ')}`
+        : filteredSizes.join(', ');
+
+    return { sizes: filteredSizes, displayText };
+}
+
 function setActiveNav() {
     const currentPath = window.location.pathname.replace(/\\/g, '/').toLowerCase();
     document.querySelectorAll('.dmt-web-link, .dmt-mobile-nav-links a').forEach(link => {
@@ -46,10 +61,29 @@ function switchTab(evt, panelId) {
 }
 
 function showProductError(message) {
+    const container = document.querySelector('.dmt-detail-container');
     const hero = document.querySelector('.dmt-product-hero');
     const tabs = document.querySelector('.dmt-tabs-wrapper');
-    if (hero) hero.innerHTML = `<div class="dmt-error-state"><h2>${message}</h2><p>Please try again later or return to the shop.</p></div>`;
+
+    if (container) container.style.display = 'none';
+    if (hero) hero.innerHTML = '';
     if (tabs) tabs.remove();
+}
+
+function toggleAdditionalInfoTab(shouldShow) {
+    const additionalButton = document.querySelector('.dmt-js-additional-tab-btn');
+    const additionalPanel = document.getElementById('dmt-panel-additional');
+
+    if (!additionalButton && !additionalPanel) return;
+
+    if (shouldShow) {
+        if (additionalButton) additionalButton.style.display = '';
+        if (additionalPanel) additionalPanel.style.display = '';
+        return;
+    }
+
+    if (additionalButton) additionalButton.remove();
+    if (additionalPanel) additionalPanel.remove();
 }
 
 function renderProduct(product) {
@@ -72,6 +106,21 @@ function renderProduct(product) {
     const dimensionsLabel = document.querySelector('.dmt-js-table-dimensions');
     const boltSizesLabel = document.querySelector('.dmt-js-table-bolt-sizes');
     const breadcrumbTitle = document.querySelector('.dmt-js-crumbs');
+
+    const boltSizesInfo = getBoltSizesInfo(product);
+    const hasAdditionalInfo = [
+        product.weight,
+        product.product_weight,
+        product.dimensions,
+        product.size,
+        product.product_dimensions,
+        boltSizesInfo.displayText
+    ].some(value => {
+        const normalized = String(value ?? '').trim();
+        return normalized !== '' && normalized.toLowerCase() !== 'n/a';
+    });
+
+    toggleAdditionalInfoTab(hasAdditionalInfo);
 
     if (img && product.image_url) img.src = product.image_url;
     if (title) title.innerText = product.name || 'Product';
@@ -104,23 +153,25 @@ function renderProduct(product) {
     }
 
     if (boltSelect) {
-        boltSelect.innerHTML = '<option value="">Choose an option</option>';
-        const sizes = normalizeFeatureItems(product.bolt_sizes || product.sizes || []);
-        if (sizes.length) {
-            sizes.forEach(size => {
-                const option = document.createElement('option');
-                option.value = size;
-                option.innerText = size;
-                boltSelect.appendChild(option);
-            });
-            var boltRowToShow = document.querySelector('.dmt-js-bolt-row');
-            if (boltRowToShow) boltRowToShow.classList.remove('hidden');
-            if (boltSizesLabel) boltSizesLabel.innerText = sizes.join(', ');
-        } else {
-            var boltRowToHide = document.querySelector('.dmt-js-bolt-row');
-            if (boltRowToHide) boltRowToHide.classList.add('hidden');
-            if (boltSizesLabel) boltSizesLabel.innerText = 'Not required';
+        const { sizes, displayText } = getBoltSizesInfo(product);
+        const boltRow = document.querySelector('.dmt-js-bolt-row');
+
+        if (!sizes.length) {
+            boltSelect.innerHTML = '';
+            if (boltRow) boltRow.style.display = 'none';
+            if (boltSizesLabel) boltSizesLabel.innerText = 'N/A';
+            return;
         }
+
+        boltSelect.innerHTML = '<option value="">Choose an option</option>';
+        sizes.forEach(size => {
+            const option = document.createElement('option');
+            option.value = size;
+            option.innerText = size;
+            boltSelect.appendChild(option);
+        });
+        if (boltRow) boltRow.style.display = '';
+        if (boltSizesLabel) boltSizesLabel.innerText = displayText;
     }
 }
 

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        :root {
+            --bg: #f5f3ee;
+            --bg-secondary: #eae7e0;
+            --card: #ffffff;
+            --card-hover: #fafaf8;
+            --border: #ddd9d0;
+            --fg: #1a1816;
+            --fg-secondary: #5c5750;
+            --muted: #8a857d;
+            --accent: #c4722a;
+            --accent-dim: rgba(196, 114, 42, 0.1);
+            --accent-glow: rgba(196, 114, 42, 0.2);
+            --danger: #c0392b;
+            --success: #27ae60;
+            --radius: 12px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Subtle background pattern */
+        .bg-atmosphere {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .bg-atmosphere::before {
+            content: '';
+            position: absolute;
+            top: -15%;
+            right: -8%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: floatBlob1 20s ease-in-out infinite;
+        }
+
+        .bg-atmosphere::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(42, 130, 160, 0.08) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: floatBlob2 24s ease-in-out infinite;
+        }
+
+        .bg-dots {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, var(--border) 0.8px, transparent 0.8px);
+            background-size: 28px 28px;
+            opacity: 0.35;
+        }
+
+        @keyframes floatBlob1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(-60px, 50px) scale(1.08);
+            }
+
+            66% {
+                transform: translate(40px, 80px) scale(0.95);
+            }
+        }
+
+        @keyframes floatBlob2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            33% {
+                transform: translate(50px, -60px) scale(1.05);
+            }
+
+            66% {
+                transform: translate(-30px, -30px) scale(0.93);
+            }
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 32px 24px 80px;
+        }
+
+        /* Header */
+        .site-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            margin-bottom: 56px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--fg);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 56px;
+            animation: fadeUp 0.7s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--accent-dim);
+            border: 1px solid rgba(196, 114, 42, 0.18);
+            border-radius: 100px;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 22px;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 14px;
+            color: var(--fg);
+        }
+
+        .hero-title .accent {
+            color: var(--accent);
+        }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--fg-secondary);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            margin-bottom: 44px;
+            animation: fadeUp 0.7s ease-out 0.12s both;
+        }
+
+        /* Map */
+        .map-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.4s;
+        }
+
+        .map-section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .map-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .map-header-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .map-header-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .map-header-text p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        .map-container {
+            flex: 1;
+            min-height: 300px;
+            position: relative;
+            background: var(--bg-secondary);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: saturate(0.85) contrast(1.05);
+            transition: filter 0.4s;
+        }
+
+        .map-container:hover iframe {
+            filter: saturate(1) contrast(1);
+        }
+
+        .map-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.83rem;
+            color: var(--fg-secondary);
+            background: var(--bg-secondary);
+        }
+
+        .map-footer i {
+            color: var(--accent);
+        }
+
+        /* Form */
+        .form-section {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-md);
+            transition: box-shadow 0.4s;
+        }
+
+        .form-section:hover {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .form-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .form-header-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-dim);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .form-header-text h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .form-header-text p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        .form-body {
+            padding: 22px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--fg-secondary);
+        }
+
+        .form-group label .required {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 11px 15px;
+            color: var(--fg);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--muted);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-dim);
+            background: var(--card);
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: var(--danger);
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.1);
+        }
+
+        .form-group .error-msg {
+            font-size: 0.73rem;
+            color: var(--danger);
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .form-group .error-msg.show {
+            display: flex;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%238a857d' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 6l3.5 4 3.5-4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 13px 26px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+            margin-top: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px var(--accent-glow);
+        }
+
+        .submit-btn:hover::before {
+            opacity: 1;
+        }
+
+        .submit-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .submit-btn.loading {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+
+        .submit-btn .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        .submit-btn.loading .spinner {
+            display: block;
+        }
+
+        .submit-btn.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            animation: fadeUp 0.7s ease-out 0.24s both;
+        }
+
+        .info-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: default;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(196, 114, 42, 0.25);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .info-card-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-dim);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin: 0 auto 14px;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .info-card:hover .info-card-icon {
+            background: var(--accent);
+            color: #fff;
+            transform: scale(1.06);
+        }
+
+        .info-card h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.93rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .info-card p {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .info-card a {
+            color: var(--fg-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-card a:hover {
+            color: var(--accent);
+        }
+
+        /* Toast */
+        .toast-container {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .toast {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 290px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            animation: slideInToast 0.4s ease-out;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .toast.success {
+            border-left: 3px solid var(--success);
+        }
+
+        .toast.error {
+            border-left: 3px solid var(--danger);
+        }
+
+        .toast-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .toast.success .toast-icon {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--success);
+        }
+
+        .toast.error .toast-icon {
+            background: rgba(192, 57, 43, 0.1);
+            color: var(--danger);
+        }
+
+        .toast-content h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .toast-content p {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 1px;
+        }
+
+        .toast-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.3s;
+        }
+
+        .toast-close:hover {
+            color: var(--fg);
+        }
+
+        @keyframes slideInToast {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 28px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 44px;
+        }
+
+        .site-footer p {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .map-container {
+                min-height: 240px;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .info-card {
+                display: flex;
+                align-items: center;
+                text-align: left;
+                gap: 16px;
+                padding: 18px 20px;
+            }
+
+            .info-card-icon {
+                margin: 0;
+                flex-shrink: 0;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-wrapper {
+                padding: 18px 14px 60px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section {
+                margin-bottom: 36px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-atmosphere"></div>
+    <div class="bg-dots"></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="page-wrapper">
+
+
+        <!-- Hero -->
+        <section class="hero-section">
+
+            <h1 class="hero-title">Let's <span class="accent">Talk</span></h1>
+            <p class="hero-desc">Have a project in mind or just want to say hello? Fill out the form or give us a call —
+                we'll get back to you within 24 hours.</p>
+        </section>
+
+        <!-- Map + Form Grid -->
+        <section class="contact-grid">
+
+            <!-- Map -->
+            <div class="map-section">
+                <div class="map-header">
+                    <div class="map-header-icon">
+                        <i data-lucide="map-pin" style="width:20px;height:20px;"></i>
+                    </div>
+                    <div class="map-header-text">
+                        <h3>Our Location</h3>
+                        <p>Visit us at the office</p>
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps?q=Dochaki%20Designs%2C%20Shed%20No.%201%2C%20DochakiShed%2C%20Dastoor%20Farms%2C%20SikandraBad%20Road%2C%20Kalkhedi%2C%20Ratibad%2C%20Bhopal%2C%20Madhya%20Pradesh%20462044&output=embed"
+                        loading="lazy" title="Dochaki Designs Location Map" allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="map-footer">
+                    <i data-lucide="navigation" style="width:14px;height:14px;"></i>
+                    Dochaki Designs, Shed No. 1, DochakiShed, Dastoor Farms, SikandraBad Road, Kalkhedi, Ratibad,
+                    Bhopal, Madhya Pradesh 462044
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="form-section">
+                <div class="form-header">
+                    <div class="form-header-icon">
+                        <i data-lucide="mail" style="width:20px;height:20px;"></i>
+                    </div>
+                    <div class="form-header-text">
+                        <h3>Send a Message</h3>
+                        <p>We'll reply as soon as possible</p>
+                    </div>
+                </div>
+                <form class="form-body" id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Name <span class="required">*</span></label>
+                            <input type="text" id="name" placeholder="Your full name" autocomplete="name" required>
+                            <span class="error-msg" id="nameError">
+                                <i data-lucide="alert-circle" style="width:12px;height:12px;"></i>
+                                Please enter your name
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email <span class="required">*</span></label>
+                        <input type="email" id="email" placeholder="you@email.com" autocomplete="email" required>
+                        <span class="error-msg" id="emailError">
+                            <i data-lucide="alert-circle" style="width:12px;height:12px;"></i>
+                            Please enter a valid email
+                        </span>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <select id="subject">
+                            <option value="" disabled selected>What's this about?</option>
+                            <option value="project">New Project</option>
+                            <option value="collab">Collaboration</option>
+                            <option value="support">Support / Help</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Something Else</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Message <span class="required">*</span></label>
+                        <textarea id="message" placeholder="Tell us what you need..." rows="4" required></textarea>
+                        <span class="error-msg" id="messageError">
+                            <i data-lucide="alert-circle" style="width:12px;height:12px;"></i>
+                            Message cannot be empty
+                        </span>
+                    </div>
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Send Message</span>
+                        <div class="spinner"></div>
+                        <i data-lucide="arrow-right" style="width:18px;height:18px;" class="btn-text"></i>
+                    </button>
+                </form>
+            </div>
+
+        </section>
+
+        <!-- Info Cards -->
+        <section class="info-cards">
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <i data-lucide="phone" style="width:22px;height:22px;"></i>
+                </div>
+                <div>
+                    <h4>Call Us</h4>
+                    <p><a href="tel:+919876543210">+91 98765 43210</a></p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <i data-lucide="mail" style="width:22px;height:22px;"></i>
+                </div>
+                <div>
+                    <h4>Email Us</h4>
+                    <p><a href="mailto:dochakidesigns@gmail.com">DochakiDesigns@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="info-card">
+                <div class="info-card-icon">
+                    <i data-lucide="clock" style="width:22px;height:22px;"></i>
+                </div>
+                <div>
+                    <h4>Working Hours</h4>
+                    <p>Mon - Sat, 10 AM - 7 PM</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <p>&copy; 2025 All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Clear error on typing
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('error');
+                const err = document.getElementById(input.id + 'Error');
+                if (err) err.classList.remove('show');
+            });
+        });
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            if (nameInput.value.trim().length < 2) {
+                nameInput.classList.add('error');
+                document.getElementById('nameError').classList.add('show');
+                valid = false;
+            }
+
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailInput.classList.add('error');
+                document.getElementById('emailError').classList.add('show');
+                valid = false;
+            }
+
+            if (messageInput.value.trim().length < 5) {
+                messageInput.classList.add('error');
+                document.getElementById('messageError').classList.add('show');
+                valid = false;
+            }
+
+            if (!valid) {
+                showToast('error', 'Oops', 'Please fill in the required fields correctly.');
+                return;
+            }
+
+            submitBtn.classList.add('loading');
+
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                form.reset();
+                showToast('success', 'Sent!', 'Your message has been received. We\'ll reply soon.');
+            }, 1600);
+        });
+
+        // Toast system
+        function showToast(type, title, message) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'success' ? 'check-circle' : 'x-circle';
+
+            toast.innerHTML = `
+                <div class="toast-icon">
+                    <i data-lucide="${icon}" style="width:18px;height:18px;"></i>
+                </div>
+                <div class="toast-content">
+                    <h4>${title}</h4>
+                    <p>${message}</p>
+                </div>
+                <button class="toast-close" aria-label="Close">
+                    <i data-lucide="x" style="width:16px;height:16px;"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+            lucide.createIcons({ nodes: [toast] });
+
+            toast.querySelector('.toast-close').addEventListener('click', () => removeToast(toast));
+            setTimeout(() => removeToast(toast), 4000);
+        }
+
+        function removeToast(toast) {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(60px)';
+            setTimeout(() => toast.remove(), 300);
+        }
+
+        // Scroll reveal for info cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.info-card').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `opacity 0.5s ease-out ${i * 0.1}s, transform 0.5s ease-out ${i * 0.1}s`;
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
