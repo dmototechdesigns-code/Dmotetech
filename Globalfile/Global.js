@@ -21,7 +21,7 @@
      * /
      */
     function getSiteRoot() {
-        return "/";
+        return "/Dmotetech/";
     }
 
 
@@ -73,7 +73,6 @@
             if (
                 href.startsWith("#") ||
                 href.startsWith("http://") ||
-                href.startsWith("https://Dmotetech/") ||
                 href.startsWith("https://") ||
                 href.startsWith("//") ||
                 href.startsWith("mailto:") ||
