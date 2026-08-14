@@ -1,67 +1,62 @@
 /**
  * DMotoTech Global Script
- * GitHub Pages compatible
+ * GitHub Pages / Custom Domain compatible
  */
 
 (function () {
 
-    // GitHub Pages repository base path
-    const REPO_NAME = "Dmotetech";
-
     /**
-     * Returns the correct website root.
+     * Get website root
      *
-     * GitHub Pages:
-     * https://dmototechdesigns-code.github.io/Dmotetech/
+     * Current GitHub Pages:
+     * https://dmototechdesigns-code.github.io/
      *
      * Result:
-     * /Dmotetech/
+     * /
+     *
+     * Custom domain:
+     * https://dmototechdesigns.online/
+     *
+     * Result:
+     * /
      */
     function getSiteRoot() {
-
-        if (
-            location.hostname === "dmototechdesigns-code.github.io"
-        ) {
-            return `/${REPO_NAME}/`;
-        }
-
-        // Custom domain / local
         return "/";
     }
 
 
     /**
-     * Convert a website path into
-     * the correct absolute path.
+     * Convert path to website-root path
      *
      * Example:
      *
-     * "/Shop/Shop.html"
-     *
-     * becomes:
-     *
-     * "/Dmotetech/Shop/Shop.html"
+     * Shop/Shop.html
+     *     ↓
+     * /Shop/Shop.html
      */
     window.sitePath = function (path) {
 
         const root = getSiteRoot();
 
-        path = path.replace(/^\/+/, "");
+        path = String(path || "")
+            .replace(/^\/+/, "");
 
         return root + path;
     };
 
 
     /**
-     * Fix all internal links automatically.
+     * Normalize internal links
+     *
+     * Converts:
      *
      * ../Shop/Shop.html
      * ../../Shop/Shop.html
      * ./Shop/Shop.html
      *
-     * all become:
+     * into:
      *
-     * /Dmotetech/Shop/Shop.html
+     * /Shop/Shop.html
      */
     function normalizeLinks() {
 
@@ -71,11 +66,15 @@
 
             if (!href) return;
 
-            // Don't touch external/special links
+
+            /**
+             * Don't modify external/special links
+             */
             if (
                 href.startsWith("#") ||
                 href.startsWith("http://") ||
                 href.startsWith("https://") ||
+                href.startsWith("//") ||
                 href.startsWith("mailto:") ||
                 href.startsWith("tel:") ||
                 href.startsWith("javascript:") ||
@@ -84,37 +83,38 @@
                 return;
             }
 
-            // Remove all ./ ../ prefixes
+
+            /**
+             * Relative paths
+             *
+             * ../
+             * ../../
+             * ./
+             */
             if (
-                href.startsWith("./") ||
-                href.startsWith("../")
+                href.startsWith("../") ||
+                href.startsWith("./")
             ) {
 
                 const cleanPath = href
                     .replace(/^(\.\.\/)+/, "")
                     .replace(/^\.\//, "");
 
-                link.href = sitePath(cleanPath);
+                link.setAttribute(
+                    "href",
+                    sitePath(cleanPath)
+                );
 
                 return;
             }
 
-            // Root-relative links
+
+            /**
+             * Root-relative path
+             *
+             * /Shop/Shop.html
+             */
             if (href.startsWith("/")) {
-
-                // Already contains repository name
-                if (
-                    href.startsWith(
-                        `/${REPO_NAME}/`
-                    )
-                ) {
-                    return;
-                }
-
-                const cleanPath = href.replace(/^\/+/, "");
-
-                link.href = sitePath(cleanPath);
-
                 return;
             }
 
@@ -124,7 +124,7 @@
 
 
     /**
-     * Load global Header
+     * Load Global Header
      */
     async function loadHeader() {
 
@@ -141,7 +141,7 @@
 
             if (!response.ok) {
                 throw new Error(
-                    "Header.html not found"
+                    `Header.html not found (${response.status})`
                 );
             }
 
@@ -160,15 +160,33 @@
                     ? doc.body.innerHTML
                     : html;
 
+
+            /**
+             * Fix Header links
+             */
             normalizeLinks();
 
 
-            // Initialize Supabase Auth
+            /**
+             * Initialize Supabase Auth
+             */
             if (
-                typeof initSupabaseAuth ===
-                "function"
+                typeof initSupabaseAuth === "function"
             ) {
-                initSupabaseAuth();
+
+                try {
+
+                    initSupabaseAuth();
+
+                } catch (error) {
+
+                    console.error(
+                        "Supabase Auth initialization failed:",
+                        error
+                    );
+
+                }
+
             }
 
         } catch (error) {
@@ -184,7 +202,7 @@
 
 
     /**
-     * Load global Footer
+     * Load Global Footer
      */
     async function loadFooter() {
 
@@ -201,7 +219,7 @@
 
             if (!response.ok) {
                 throw new Error(
-                    "Footer.html not found"
+                    `Footer.html not found (${response.status})`
                 );
             }
 
@@ -222,6 +240,10 @@
                     ? doc.body.innerHTML
                     : html;
 
+
+            /**
+             * Fix Footer links
+             */
             normalizeLinks();
 
         } catch (error) {
@@ -237,31 +259,55 @@
 
 
     /**
-     * Initialize everything
+     * Initialize Global System
      */
     async function initGlobal() {
 
-        // Existing page links
+        console.log(
+            "DMotoTech Global Script Started"
+        );
+
+
+        /**
+         * Fix links already present
+         * on current page
+         */
         normalizeLinks();
 
-        // Header
+
+        /**
+         * Load Header
+         */
         await loadHeader();
 
-        // Footer
+
+        /**
+         * Load Footer
+         */
         await loadFooter();
 
-        // Header/Footer ke links
+
+        /**
+         * Fix Header + Footer links
+         */
         normalizeLinks();
 
+
         console.log(
-            "DMotoTech Global System Loaded:",
-            sitePath("")
+            "DMotoTech Global System Loaded"
+        );
+
+        console.log(
+            "Site Root:",
+            getSiteRoot()
         );
 
     }
 
 
-    // Start
+    /**
+     * Start after DOM is ready
+     */
     if (
         document.readyState === "loading"
     ) {
