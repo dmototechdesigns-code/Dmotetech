@@ -13,6 +13,7 @@
     <link rel="icon" type="image/png"
         href="https://dmototech.co.in/wp-content/uploads/2026/01/cropped-dmototech-logo-1png.png">
     <link rel="stylesheet" href="./Header/Header.css">
+    <link rel="stylesheet" href="./footer/footer.css">
     <link rel="stylesheet" href="./style.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -454,47 +455,9 @@
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- ══════ BENTO METRICS ══════ -->
-    <div class="bento-metrics">
-        <div class="bento-metrics__grid">
-            <div class="bento-tile bento-tile--featured reveal-up">
-                <div>
-                    <div class="bento-tile__icon"><i class="fas fa-cogs"></i></div>
-                    <div class="bento-tile__num" data-count="5000" data-suffix="+">0</div>
-                </div>
-                <div class="bento-tile__desc">Units crafted in our workshop with hands-on quality control at every
-                    stage
-                </div>
-            </div>
-            <div class="bento-tile reveal-up" style="transition-delay: 0.1s;">
-                <div class="bento-tile__icon"><i class="fas fa-star"></i></div>
-                <div class="bento-tile__num" data-count="4.8" data-decimal="true">0</div>
-                <div class="bento-tile__desc">Average Customer Rating</div>
-            </div>
-            <div class="bento-tile reveal-up" style="transition-delay: 0.15s;">
-                <div class="bento-tile__icon"><i class="fas fa-redo-alt"></i></div>
-                <div class="bento-tile__num" data-count="12" data-suffix="">0</div>
-                <div class="bento-tile__desc">Design Iterations</div>
-            </div>
-            <div class="bento-tile reveal-up" style="transition-delay: 0.2s;">
-                <div class="bento-tile__icon"><i class="fas fa-users"></i></div>
-                <div class="bento-tile__num" data-count="2500" data-suffix="+">0</div>
-                <div class="bento-tile__desc">Happy Customers</div>
-            </div>
-            <div class="bento-tile reveal-up" style="transition-delay: 0.25s;">
-                <div class="bento-tile__icon"><i class="fas fa-map-marker-alt"></i></div>
-                <div class="bento-tile__num" data-count="18" data-suffix="">0</div>
-                <div class="bento-tile__desc">States Served</div>
-            </div>
-            <div class="bento-tile reveal-up" style="transition-delay: 0.3s;">
-                <div class="bento-tile__icon"><i class="fas fa-hand-holding-heart"></i></div>
-                <div class="bento-tile__num" data-count="98" data-suffix="%">0</div>
-                <div class="bento-tile__desc">Satisfaction Rate</div>
-            </div>
-        </div>
-    </div>
+
+    </section>
 
     <!-- ══════ PROCESS CORRIDOR ══════ -->
     <section class="process-corridor" aria-label="Manufacturing process">
@@ -563,6 +526,8 @@
             </article>
         </div>
     </section>
+
+    <div id="global-Footer"></div>
 
 
     <script>
@@ -821,6 +786,42 @@
             document.addEventListener('DOMContentLoaded', loadGlobalHeader);
         } else {
             loadGlobalHeader();
+        }
+    </script>
+
+    <script>
+        async function loadGlobalFooter() {
+            const container = document.getElementById('global-Footer');
+            if (!container) return;
+
+            try {
+                const response = await fetch('./footer/footer.html');
+
+                if (!response.ok) {
+                    throw new Error('Footer file not found');
+                }
+
+                const html = await response.text();
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+
+                container.innerHTML = doc.body ? doc.body.innerHTML : html;
+
+                // Footer ke andar ../ links ko correct path dena
+                container.querySelectorAll('a[href^="../"]').forEach(a => {
+                    a.href = a.getAttribute('href').replace(/^\.\./, '');
+                });
+
+            } catch (error) {
+                console.error('Footer load failed:', error);
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGlobalFooter);
+        } else {
+            loadGlobalFooter();
         }
     </script>
     <script>
