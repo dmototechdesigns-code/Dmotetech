@@ -775,6 +775,9 @@
                 container.querySelectorAll('a[href^="../"]').forEach(a => {
                     a.href = a.getAttribute('href').replace(/^\.\./, '');
                 });
+                if (typeof forceSyncHomeCart === 'function') {
+                    forceSyncHomeCart();
+                }
                 if (typeof initSupabaseAuth === 'function') {
                     initSupabaseAuth();
                 }
