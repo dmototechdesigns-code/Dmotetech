@@ -264,13 +264,13 @@ async function triggerRazorpayCheckout() {
     if (!session) {
         showToast("Please login to proceed to checkout!");
         setTimeout(() => {
-            window.location.href = getProjectPath("../Auth/Login/Login.html");
+            window.location.href = getProjectPath("/Dmotetech/Auth/Login/Login.html");
         }, 1500);
         return;
     }
 
     // If logged in, proceed to checkout
-    window.location.href = getProjectPath("../CheckOut_Page/checkout.html");
+    window.location.href = getProjectPath("/Dmotetech/CheckOut_Page/checkout.html");
 }
 
 // ——— Toast Notification ———
